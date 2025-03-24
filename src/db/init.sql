@@ -37,6 +37,21 @@ CREATE TABLE Cars (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabelle "RegularServiceItem"
+CREATE TABLE RegularServiceItem (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    interval INT,
+    note TEXT,  
+
+    -- Foreign Keys
+    car_id INT NOT NULL REFERENCES Cars(id) ON DELETE CASCADE,
+
+    -- Timestamps
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Inital User 
 INSERT INTO Users (username, password, surname, name) VALUES
 ('admin', '$2b$10$bZMmFhgISc4e0nnoY8Mce.R9fSn5jSMAzbf2JyY19EFpl2LPlWx2y', 'Admin', 'Admin');
