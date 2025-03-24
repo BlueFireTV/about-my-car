@@ -23,10 +23,8 @@ jobs:
             - 'src/backend/**'
           frontend:
             - 'src/frontend/**'    
-          shared:
-            - 'src/shared/**'    
           db:
-            - 'src/database/**'    
+            - 'src/db/**'    
 
   build-image-backend:
     needs: changes
