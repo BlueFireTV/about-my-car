@@ -1,0 +1,7 @@
+= About My Car
+
+== Beschreibung
+
+- Services im Blick zu halten
+- Fahrzeugscheinbild über Kamera/Webcam/Bild hochladen und daten aus diesem auslesen
+
