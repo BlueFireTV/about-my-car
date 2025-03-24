@@ -44,10 +44,6 @@ jobs:
           version=$(npm pkg get version --raw | tr -d \")
           echo "version=$version" >> $GITHUB_OUTPUT
 
-      - name: Copy shared in backend
-        working-directory: ./src/
-        run: cp -R ./shared/ ./backend/shared/
-
       - name: Login to GHCR
         uses: docker/login-action@v3
         with:
@@ -84,10 +80,6 @@ jobs:
         run: |
           version=$(npm pkg get version --raw | tr -d \")
           echo "version=$version" >> $GITHUB_OUTPUT
-
-      - name: Copy shared in frontend
-        working-directory: ./src/
-        run: cp -R ./shared/ ./frontend/shared/
 
       - name: Login to GHCR
         uses: docker/login-action@v3
@@ -129,7 +121,7 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
-          context: ./src/database
+          context: ./src/db
           push: true
           tags: |
             ghcr.io/${{ github.repository }}-db:latest
