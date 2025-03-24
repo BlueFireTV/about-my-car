@@ -1,0 +1,140 @@
+name: Build Docker image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.changes.outputs.backend }}
+      frontend: ${{ steps.changes.outputs.frontend }}
+      shared: ${{ steps.changes.outputs.shared }}
+      db: ${{ steps.changes.outputs.db }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: dorny/paths-filter@v3
+      id: changes
+      with:
+        filters: |
+          backend:
+            - 'src/backend/**'
+          frontend:
+            - 'src/frontend/**'    
+          shared:
+            - 'src/shared/**'    
+          db:
+            - 'src/database/**'    
+
+  build-image-backend:
+    needs: changes
+    if: ${{ needs.changes.outputs.shared == 'true' || needs.changes.outputs.backend == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract assembly version
+        working-directory: ./src/backend
+        id: get_version
+        run: |
+          version=$(npm pkg get version --raw | tr -d \")
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Copy shared in backend
+        working-directory: ./src/
+        run: cp -R ./shared/ ./backend/shared/
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/backend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-backend:latest
+            ghcr.io/${{ github.repository }}-backend:${{ steps.get_version.outputs.version }}
+          build-args: |
+            USERNAME=${{ secrets.USERNAME }}
+            GH_PACKAGES_TOKEN=${{ secrets.GHCR_TOKEN }} 
+
+  build-image-frontend:
+    needs: changes
+    if: ${{ needs.changes.outputs.shared == 'true' || needs.changes.outputs.frontend == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract assembly version
+        working-directory: ./src/frontend
+        id: get_version
+        run: |
+          version=$(npm pkg get version --raw | tr -d \")
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Copy shared in frontend
+        working-directory: ./src/
+        run: cp -R ./shared/ ./frontend/shared/
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/frontend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-frontend:latest
+            ghcr.io/${{ github.repository }}-frontend:${{ steps.get_version.outputs.version }}
+          build-args: |
+            USERNAME=${{ secrets.USERNAME }}
+            GH_PACKAGES_TOKEN=${{ secrets.GHCR_TOKEN }}
+
+  build-image-db:
+    needs: changes
+    if: ${{ needs.changes.outputs.db == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./src/database
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}-db:latest
+          build-args: |
+            USERNAME=${{ secrets.USERNAME }}
+            GH_PACKAGES_TOKEN=${{ secrets.GHCR_TOKEN }}
