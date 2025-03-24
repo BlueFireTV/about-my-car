@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: ghcr.io/org-bftv/about-my-car-frontend:latest
+    container_name: frontend
+    ports:
+      - "8080:80"
+    env_file:
+      - .env
+    networks:
+      - my_network 
+    depends_on:
+      - backend
+
+  backend:
+    image: ghcr.io/org-bftv/about-my-car-backend:latest
+    container_name: backend
+    ports:
+      - "3133:3133"
+    env_file:
+      - .env
+    networks:
+      - my_network
+    depends_on:
+      - db
+
+  db:
+    image: ghcr.io/org-bftv/about-my-car-db:latest
+    container_name: db
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
