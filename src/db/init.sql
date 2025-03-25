@@ -58,3 +58,9 @@ INSERT INTO Users (username, password, surname, name) VALUES
 -- Inital Car
 INSERT INTO Cars (vin, hsn, tsn, enginecode, transmissioncode, platenumber, brand, model, model_year, user_id) VALUES
 ('WVWZZZ1JZ3W000000', '0603', '123', 'AEX', 'EYK', 'B-12345', 'VW', 'Golf', '2003', 1);
+
+-- Inital RegularServiceItem
+INSERT INTO RegularServiceItems (name, date, interval, note, car_id) VALUES
+('Ölwechsel', '2020-01-01', 365, 'Ölwechsel mit Filter', 1),
+('Bremsen', '2020-01-01', 365, 'Bremsen prüfen', 1),
+('Reifen', '2020-01-01', 365, 'Reifen prüfen', 1);

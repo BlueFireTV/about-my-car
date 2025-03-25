@@ -4,8 +4,8 @@ import { User } from '../types/user';
 
 export async function getAllCarsQuery(): Promise<Car[]> {
     const carArray = new Array<Car>();
-    const carByIdSql = `SELECT *  FROM public.cars`;
-    const carRows = await query(carByIdSql);
+    const carsSql = `SELECT *  FROM public.cars`;
+    const carRows = await query(carsSql);
 
     if(carRows === null){
         return Promise.reject({ status: 500, message: 'Car not found' });

@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.use('/api/car', carsRouter);
+app.use('/api/cars', carsRouter);
 
 
 app.listen(PORT, () => {
