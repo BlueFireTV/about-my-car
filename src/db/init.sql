@@ -63,4 +63,6 @@ INSERT INTO Cars (vin, hsn, tsn, enginecode, transmissioncode, platenumber, bran
 INSERT INTO RegularServiceItems (name, date, interval, note, car_id) VALUES
 ('Ölwechsel', '2020-01-01', 365, 'Ölwechsel mit Filter', 1),
 ('Bremsen', '2020-01-01', 365, 'Bremsen prüfen', 1),
-('Reifen', '2020-01-01', 365, 'Reifen prüfen', 1);
+('Reifen', '2020-01-01', 365, 'Reifen prüfen', 1),
+('Zündkerzen', '2020-01-01', 365, 'Zündkerzen prüfen', 1),
+('Klima', '2020-01-01', 365, 'Klima prüfen', 1);
