@@ -54,3 +54,7 @@ CREATE TABLE RegularServiceItems (
 -- Inital User 
 INSERT INTO Users (username, password, surname, name) VALUES
 ('admin', '$2b$10$bZMmFhgISc4e0nnoY8Mce.R9fSn5jSMAzbf2JyY19EFpl2LPlWx2y', 'Admin', 'Admin');
+
+-- Inital Car
+INSERT INTO Cars (vin, hsn, tsn, enginecode, transmissioncode, platenumber, brand, model, model_year, user_id) VALUES
+('WVWZZZ1JZ3W000000', '0603', '123', 'AEX', 'EYK', 'B-12345', 'VW', 'Golf', '2003', 1);
