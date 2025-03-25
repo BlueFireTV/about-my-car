@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {getCarsByUserId, getRegularServiceItemByCarId, getAllCarsQuery, createCarToUser, deleteCarById, updateCarById, getNextRegularServices, setRegularServiceItemByCarId} from "./cars-dbmodel";
+import {getCarsByUserId, getRegularServiceItemByCarId, getAllCarsQuery, createCarToUser, deleteCarById, updateCarById, setRegularServiceItemByCarId} from "./cars-dbmodel";
 
 
 export async function getAllCars(request: Request, response: Response) {
@@ -26,16 +26,6 @@ export async function setRegularServiceItem(request: Request, response: Response
     } catch (error) {
         response.status(500).json({ message: error, body: request.body });
     }
-}
-
-export async function getNextRS(request: Request, response: Response) {
-    try {
-        const result = await getNextRegularServices();
-        response.json(result);
-      } catch (error) {
-        console.error('Error getting next RegularServices at:', error);
-        response.status(500).json({ message: 'Internal server error' });
-      }
 }
 
 export async function createCar(request: Request, response: Response) {

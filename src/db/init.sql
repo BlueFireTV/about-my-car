@@ -37,7 +37,7 @@ CREATE TABLE Cars (
 );
 
 -- Tabelle "RegularServiceItem"
-CREATE TABLE RegularServiceItem (
+CREATE TABLE RegularServiceItems (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     date DATE NOT NULL,

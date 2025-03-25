@@ -4,7 +4,6 @@ import {
     getRegularServiceItem,
     setRegularServiceItem,
     getAllCars,
-    getNextRS,
     createCar,
     deleteCar,
     updateCar
@@ -15,7 +14,6 @@ const carRouter = express.Router();
 
 carRouter.get('/all/',getAllCars);
 carRouter.get('/all/:id',getCarsByUser);
-carRouter.get('/nextRs/', getNextRS);
 
 carRouter.post('/rsi/:carId',setRegularServiceItem);
 carRouter.get('/rsi/:carId',getRegularServiceItem);
