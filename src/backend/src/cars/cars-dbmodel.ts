@@ -73,40 +73,36 @@ export async function getCarById(id: number): Promise<Car> {
     return car;
 }
 
-export async function getCarsByUserId(UserId: number): Promise<Car[]> {
+export async function getCarByUserId(UserId: number): Promise<Car> {
     const carArray = new Array<Car>();
     const allCarsSql = `SELECT *  FROM public.cars WHERE User_id = $1`;
     const carRows = await query(allCarsSql, [UserId]);
+    var car : Car = {} as Car;
 
     if(carRows === null){
         return Promise.reject({ status: 500, message: 'Car not found' });
     }
 
-    for (const carRow of carRows) {
-        let car = {
-            id: carRow.id,
-            vin: carRow.vin,
-            hsn: carRow.hsn,
-            tsn: carRow.tsn,
-            enginecode: carRow.enginecode,
-            transmissioncode: carRow.transmissioncode,
-            platenumber: carRow.platenumber,
-            note: carRow.note,
-            brand: carRow.brand,
-            model: carRow.model,
-            modelYear: carRow.model_year,
-            initialApproval: carRow.initial_approval,
-            picture: carRow.picture,
-            vrdPicture: carRow.vrd_picture,
-            regularServiceItem: [] as RegularService[]
-        } as Car;
+    const carRow = carRows[0];
+         
+    car.id = carRow.id;
+    car.vin = carRow.vin;
+    car.hsn = carRow.hsn;
+    car.tsn = carRow.tsn;
+    car.enginecode = carRow.enginecode;
+    car.transmissioncode = carRow.transmissioncode;
+    car.platenumber = carRow.platenumber;
+    car.note = carRow.note;
+    car.brand = carRow.brand;
+    car.model = carRow.model;
+    car.modelYear = carRow.model_year;
+    car.initialApproval = carRow.initial_approval;
+    car.vrdPicture = carRow.vrd_picture;
+    car.regularServiceItem = [] as RegularService[];
 
-        car.regularServiceItem = await getRegularServiceItemByCarId(carRow.id);
-
-        carArray.push(car);
-    }
-
-    return carArray;
+    car.regularServiceItem = await getRegularServiceItemByCarId(carRow.id);
+    
+    return car;
 }
 
 export async function getRegularServiceItemByCarId(carId: number): Promise<RegularService[]> {

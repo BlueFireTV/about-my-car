@@ -1,0 +1,233 @@
+
+
+.header {
+    border-bottom: 1px solid var(--border-color);
+    margin: 0 2% 5px 2%;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+/*Nav Elemente*/
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 2%;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 24px;
+}
+
+/* TODO farbe anpassen */
+.nav-list li a:hover {
+    border-bottom: 2px solid var(--nav-color-hover);
+}
+
+.nav button {
+    background-color: transparent;
+    border: none;
+    font-size: var(--font-size-large);
+}
+
+.nav a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/*Der aktive link wird unterstrichen*/
+.active-link {
+    border-bottom: 2px solid var(--border-color); 
+    text-decoration: none;
+}
+
+.user-header-status-button {
+    align-items: center;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: 1%;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.user-header-group {
+    display: flex;
+    font-size: var(--font-size-large);
+}
+
+.user-header-usericon {
+    margin-left: 10px;
+}
+
+.user-header-popup {
+    position: absolute;
+    background-color: var(--bg-primary);
+    top: 50px;
+    right: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 5px 5px; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    padding: var(--padding-medium);
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding-small);
+    align-items: flex-start;
+    z-index: 1000;
+}
+
+/* Close button (X icon) styles */
+.user-header-popup .user-header-popup-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary); 
+    padding: 4px;
+    line-height: 0; /* Adjust to match icon size */
+    transition: color 0.3s ease;
+}
+
+/* Button styles */
+.user-header-popup button {
+    padding: var(--padding-small) ; /* Uniform button padding */
+    font-size: var(--font-size-medium);
+    background-color: transparent; /* Transparent background for a minimalistic look */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Link styles */
+.user-header-popup a {
+    text-decoration: none;
+    color: var(--color-text-primary); /* Match the text color */
+    font-size: var(--font-size-medium);
+    transition: color 0.3s ease;
+}
+
+.user-header-popup button:hover {
+    color: var(--color-danger); /* Highlight the text on hover */
+}
+
+.user-header-popup a:hover {
+    color: var(--color-primary); /* Highlighted link color when hovered */
+}
+
+/* Menu Toggle Button - Small Screen */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .nav {
+        display: none;  /* Hidden by default for smaller screens */
+        flex-direction: column;
+        position: fixed;
+        align-items: start;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: fit-content;
+        padding: 5px 20px 20px;
+        margin-left: 0;
+        z-index: 1000;
+        background-color: var(--bg-primary);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 15px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav-list li a {
+        text-decoration: none;
+        font-size: var(--font-size-large);
+        padding: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .menu-toggle {
+        display: block;
+        align-items: start;
+        margin-left: 0;
+    }
+
+    .logo {
+        margin: auto;
+    }
+
+    .popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .popup-header-logo {
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+    }
+    
+    .close-popup-header{
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+
+}
+
+@media (min-width: 769px) {
+    .nav {
+        display: flex;
+        align-items: start;
+        width: 100%;
+    }
+
+    .popup-logo {
+        display: none;
+    }
+
+    .popup-header {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+    }
+}

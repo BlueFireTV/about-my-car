@@ -1,15 +1,15 @@
 import {Request, Response} from "express";
-import {getCarsByUserId, getRegularServiceItemByCarId, getAllCarsQuery, createCarToUser, deleteCarById, updateCarById, setRegularServiceItemByCarId} from "./cars-dbmodel";
+import {getCarByUserId, getRegularServiceItemByCarId, getAllCarsQuery, createCarToUser, deleteCarById, updateCarById, setRegularServiceItemByCarId} from "./cars-dbmodel";
 
 
 export async function getAllCars(request: Request, response: Response) {
     response.json(await getAllCarsQuery());
 }
 
-export async function getCarsByUser(request: Request, response: Response) {
+export async function getCarByUser(request: Request, response: Response) {
     let UserId = Number(request.params.id);
 
-    response.json(await getCarsByUserId(UserId));
+    response.json(await getCarByUserId(UserId));
 }
 
 export async function getRegularServiceItem(request: Request, response: Response) {

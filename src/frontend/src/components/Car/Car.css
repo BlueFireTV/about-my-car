@@ -1,0 +1,161 @@
+.car-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--margin-small);
+}
+
+.car-info-left, .car-info-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-small);
+}
+
+.car-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--margin-large);
+    background-color: var(--bg-secondary);
+    padding: var(--padding-large);
+    border-radius: var(--radius-medium);
+    margin: var(--margin-medium);
+    box-shadow: var(--shadow-medium);
+}
+
+.info-header h2 {
+    margin-bottom: 0;
+}
+
+.sort-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between the icon and the text */
+}
+
+.due-soon {
+    background-color: #862727; /* Light red background */
+}
+  
+.due-soon:hover {
+    background-color: #a34747; /* Light red background */
+}
+
+.car-pictures-empty, .regular-service-items, .service-entries {
+    background-color: var(--bg-secondary);
+    padding: var(--padding-large);
+    border-radius: var(--radius-medium);
+    margin: var(--margin-medium);
+    box-shadow: var(--shadow-medium);
+}
+
+.regular-service-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actionRSIBtn, .actionAddServiceEntryBtn {
+    width: 32px;
+    height: 32px;
+    margin-left: 12px;
+    transition: color 0.2s;
+    border: none;
+    border-radius: var(--radius-medium);
+    cursor: pointer;
+}
+
+.actionRSIBtn:hover {
+    background-color: var(--color-danger); 
+}
+
+.actionAddServiceEntryBtn:hover {
+    background-color: var(--color-success);
+}
+
+.year {
+    color: var(--color-text-secondary);
+    margin-top: var(--margin-small);
+    padding-left: var(--padding-large);
+}
+
+.info-section {
+    margin-top: var(--margin-medium);
+}
+
+.car-pictures {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-medium);
+    margin: var(--margin-medium);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /*muss jetzt hardcoded sein weil shadow-medium hier irgendwie anders aussieht*/
+}
+
+.car-pictures-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--margin-small) var(--margin-medium);
+    padding-left: var(--padding-large);
+}
+
+.label {
+    color: var(--color-text-secondary); 
+}
+
+.icon {
+    width: var(--font-size-medium);
+    height: var(--font-size-medium);
+    color: var(--color-text-secondary);
+}
+
+.car-notes-section h3 {
+    margin-bottom: var(--margin-small);
+}
+
+.car-notes-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.car-notes-textarea {
+    flex-grow: 1;
+    min-height: 300px;
+    margin-top: var(--margin-small);
+    padding: var(--padding-small);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    background-color: var(--bg-tertiary);
+    color: var(--color-text-primary);
+    resize: none;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+.breadcrumb-link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+  
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    margin-top: var(--margin-medium);
+}  
+
+.empty-service {
+    color: var(--color-text-secondary);
+}

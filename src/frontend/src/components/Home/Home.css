@@ -1,0 +1,29 @@
+.row {
+    display: flex;
+    flex-wrap: wrap; /* Allows panes to wrap to the next line if needed */
+    gap: var(--margin-large); /* Optional spacing between panes */
+}
+
+.pane {
+    flex: 1 1 calc(50% - 20px);
+    background-color: var(--bg-secondary);
+    overflow: hidden;
+    overflow: clip;
+    box-sizing: border-box;
+    border-radius: 16px;
+    padding: var(--padding-large);
+    box-shadow: var(--shadow-medium);
+    cursor: grab; /* Indicates draggable behavior */
+}
+
+.pane:active {
+    cursor: grabbing;
+}
+
+.dragging {
+    opacity: 0.5; /* Pane appears semi-transparent while being dragged */
+}
+
+.drag-over {
+    border: 2px dashed var(--primary-color); /* Highlight drop area */
+}

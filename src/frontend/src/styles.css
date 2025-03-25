@@ -1,0 +1,170 @@
+:root {
+     /* Farben */
+    --color-primary: #1A73E8;
+    --color-secondary: #F9AA33;
+    --color-success: #34A853;
+    --color-warning: #F9AB00;
+    --color-danger: #EA4335;
+
+    --color-primary-hover: light-dark(#d0cece, #2d4059);    /* Darker shade of #1A73E8 */
+    --color-secondary-hover: #e3952d; /* Darker shade of #F9AA33 */
+    --color-success-hover: #2c8b45;   /* Darker shade of #34A853 */
+    --color-warning-hover: #d89400;   /* Darker shade of #F9AB00 */
+    --color-danger-hover: #d4372e;    /* Darker shade of #EA4335 */
+
+    /* Hintergrundfarben */
+    --bg-primary: light-dark(#f8fafc, #0f172a); /* Dynamischer Hintergrund */
+    --bg-secondary: light-dark(#f1f5f9, #1f2937); /* Oberfläche (z.B. Karten) */
+    --bg-tertiary: light-dark(#ffffff, #333b48); /* Oberfläche auf Oberfläche (z.B. Eingabefeld) */
+    --bg-accent: light-dark(#75a6e6, #2e5dbb); /* Blauer Akzent, z.B. Linien oder Tabellenheader */
+
+    /* Textfarben */
+    --color-text-primary: light-dark(#212121, #E8EAED); /* Primärer Text */
+    --color-text-secondary: light-dark(#5F6368, #B0B3B8); /* Sekundärer Text */
+
+    /* Border */
+    --border-color: light-dark(#75a6e6, #75a6e6);
+
+    /* Nav & Login */
+    --nav-color-hover: light-dark(#ffa600 ,#ffdd00);
+
+
+    /* Textgrößen */
+    --font-size-mini: 0.75rem;
+    --font-size-small: 1rem;
+    --font-size-medium: 1.2rem;
+    --font-size-large: 1.5rem;
+
+    /* Padding */
+    --padding-small: 8px;
+    --padding-medium: 16px;
+    --padding-large: 24px;
+
+    /* Margin */
+    --margin-tiny: 4px;
+    --margin-small: 8px;
+    --margin-medium: 16px;
+    --margin-large: 24px;
+    
+   
+
+    /* Schatten */
+    --shadow: light-dark(0px 2px 4px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.3));
+
+    /* Eckenradius */
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 16px;
+
+    /* Schatten */
+    --shadow-light: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-dark: 0px 6px 12px rgba(0, 0, 0, 0.2);
+
+    /* Abstände */
+    --spacing-small: 8px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+
+    /*Gleicher Außenabstand für jede Seite*/
+    --margin-outer: 3%;
+
+    --color-scrollbar-thumb: light-dark(#212121, #E8EAED);
+    --color-scrollbar-track: light-dark(#E8EAED, #212121);
+
+
+    /* Set default color-scheme */
+    color-scheme: light dark;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--color-text-primary);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*Benutzt um zentrall die margin zu definieren*/
+.page-container { 
+    margin: var(--margin-outer);
+    margin-top: var(--margin-medium);   
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-medium) 0;
+}
+
+.status-pill {
+    border-radius: 9999px;
+    padding: var(--padding-small) var(--padding-medium);
+    display: inline-block;
+    font-size: var(--font-size-small);
+    font-weight: 500;
+}
+
+h2 {
+    margin-bottom: var(--margin-medium);
+}
+
+/* Form layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--margin-small);
+}
+
+/* Labels and Inputs */
+label {
+    color: var(--color-text-primary);
+    display: flex;
+    flex-direction: column;
+    margin: var(--margin-small) 0;
+}
+
+.close-dialog-button {
+    position: absolute;
+    top: var(--margin-medium);
+    right: var(--margin-medium);
+    padding: var(--padding-small);
+    border: none;
+    cursor: pointer;
+    background: none;
+    z-index: 999;
+}
+
+/* Customize the scrollbar track */
+::-webkit-scrollbar {
+    width: 8px; /* Adjust the width as desired */
+    height: 8px; /* For horizontal scrollbars */
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+background-color: var(--color-scrollbar-thumb); /* A semi-transparent thumb */
+border-radius: 8px; /* Rounded edges */
+border: 2px solid transparent; /* Space around the thumb */
+background-clip: padding-box; /* Ensure no overlap with border */
+transition: background 0.3s;
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+background: var(--color-scrollbar-track); /* Light background for the track */
+border-radius: 8px; /* Rounded edges */
+}
+
+/* Add hover effect to scrollbar thumb */
+::-webkit-scrollbar-thumb:hover {
+background-color: rgba(0, 0, 0, 0.6); /* Darker on hover */
+}
+
+/* Firefox scrollbar styles */
+html {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: var(--color-scrollbar-thumb); /* Thumb and track colors */
+  }
+  
+  

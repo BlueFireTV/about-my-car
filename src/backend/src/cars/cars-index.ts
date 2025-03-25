@@ -2,7 +2,7 @@ import express from 'express';
 import { auth } from '../auth/authMiddleware';
 
 import {
-    getCarsByUser,
+    getCarByUser,
     getRegularServiceItem,
     setRegularServiceItem,
     getAllCars,
@@ -14,7 +14,7 @@ import {
 const carsRouter = express.Router();
 
 carsRouter.get('/all/', auth, getAllCars);
-carsRouter.get('/all/:id', auth, getCarsByUser);
+carsRouter.get('/all/:id', auth, getCarByUser);
 
 carsRouter.post('/rsi/:carId', auth, setRegularServiceItem);
 carsRouter.get('/rsi/:carId', auth, getRegularServiceItem);

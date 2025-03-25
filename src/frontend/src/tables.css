@@ -1,0 +1,90 @@
+.tableContainer {
+    max-height: 75vh;
+    overflow-x: auto;
+    position: relative;
+    border-radius: var(--radius-small);
+    background-color: var(--bg-secondary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0;
+    table-layout: auto; 
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-accent);
+    text-transform: uppercase;
+    font-size: var(--font-size-small);
+    z-index: 1;
+}
+
+thead th {
+    padding: var(--padding-medium);
+    color: var(--color-text-primary);
+    font-weight: bold;
+    text-align: left;
+}
+
+tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+tbody tr:hover {
+    cursor: pointer;
+    background-color: var(--color-primary-hover);
+    color: var(--color-primary);
+}
+
+tbody td {
+    padding: var(--padding-medium);
+    width: auto;
+    border-top: 1px solid var(--border-color);
+    text-align: left;
+    font-size: var(--font-size-small);
+}
+
+
+/* Make table rows stack for smaller screens */
+@media (max-width: 768px) {
+
+    .tableContainer{
+        background-color: transparent;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none; 
+    }
+
+    tbody tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-small);
+        padding: var(--padding-small);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--padding-small);
+        text-align: left;
+        border-top: none;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: var(--margin-small);
+        color: var(--color-text-secondary);
+        text-transform: uppercase;
+    }
+}

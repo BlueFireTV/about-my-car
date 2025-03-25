@@ -1,0 +1,100 @@
+/* Container styling */
+.loginContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px; /* Ensure padding for small screens */
+    background-color: var(--color-bg);
+    color: var(--text-color);
+    overflow: hidden; /* Prevent scrollbars from appearing due to the circle */
+}
+
+/* Heading styling */
+.loginContainer h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+/* Form styling */
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px; /* Limit form width */
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--color-surface);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form group styling */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Input styling */
+.formGroup input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--color-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formGroup input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 4px var(--accent-color);
+}
+
+/* Button styling */
+.loginButton {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.loginButton:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+/* Message styling */
+.message {
+    margin-top: 10px;
+    color: var(--accent-color);
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Responsive styling */
+@media (max-width: 500px) {
+    .loginForm {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .loginContainer h1 {
+        font-size: 20px;
+    }
+}
