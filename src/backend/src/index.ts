@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import carsRouter from './cars/cars-index';
 import usersRouter from './users/users-index';
+import weatherRouter from './weather/weather-index';
 
 dotenv.config();
 const app = express();
@@ -23,7 +24,11 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+// public routes
 app.use('/api/users', usersRouter);
+app.use('/api/weather', weatherRouter);
+
+// protected routes
 app.use('/api/cars', carsRouter);
 
 
