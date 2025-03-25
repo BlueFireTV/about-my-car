@@ -1,4 +1,6 @@
 import express from 'express';
+import { auth } from '../auth/authMiddleware';
+
 import {
     getCarsByUser,
     getRegularServiceItem,
@@ -11,16 +13,14 @@ import {
 
 const carsRouter = express.Router();
 
+carsRouter.get('/all/', auth, getAllCars);
+carsRouter.get('/all/:id', auth, getCarsByUser);
 
-carsRouter.get('/all/',getAllCars);
-carsRouter.get('/all/:id',getCarsByUser);
+carsRouter.post('/rsi/:carId', auth, setRegularServiceItem);
+carsRouter.get('/rsi/:carId', auth, getRegularServiceItem);
 
-carsRouter.post('/rsi/:carId',setRegularServiceItem);
-carsRouter.get('/rsi/:carId',getRegularServiceItem);
-
-
-carsRouter.post('/createCar', createCar);
-carsRouter.put('/updateCar/:carId', updateCar);
-carsRouter.delete('/deleteCar/:carId', deleteCar);
+carsRouter.post('/createCar', auth, createCar);
+carsRouter.put('/updateCar/:carId', auth, updateCar);
+carsRouter.delete('/deleteCar/:carId', auth, deleteCar);
 
 export default carsRouter;

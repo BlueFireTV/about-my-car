@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import carsRouter from './cars/cars-index';
+import usersRouter from './users/users-index';
 
 dotenv.config();
 const app = express();
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+app.use('/api/users', usersRouter);
 app.use('/api/cars', carsRouter);
 
 

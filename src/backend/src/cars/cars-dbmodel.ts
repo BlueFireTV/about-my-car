@@ -101,6 +101,8 @@ export async function getCarsByUserId(UserId: number): Promise<Car[]> {
             regularServiceItem: [] as RegularService[]
         } as Car;
 
+        car.regularServiceItem = await getRegularServiceItemByCarId(carRow.id);
+
         carArray.push(car);
     }
 
