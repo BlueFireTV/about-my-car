@@ -57,8 +57,8 @@ jobs:
           context: ./src/backend
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}-backend:latest
-            ghcr.io/${{ github.repository }}-backend:${{ steps.get_version.outputs.version }}
+            ghcr.io/${{ lowercase(github.repository) }}-backend:latest
+            ghcr.io/${{ lowercase(github.repository) }}-backend:${{ steps.get_version.outputs.version }}
           build-args: |
             USERNAME=${{ secrets.USERNAME }}
             GH_PACKAGES_TOKEN=${{ secrets.GHCR_TOKEN }} 
@@ -94,8 +94,8 @@ jobs:
           context: ./src/frontend
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}-frontend:latest
-            ghcr.io/${{ github.repository }}-frontend:${{ steps.get_version.outputs.version }}
+            ghcr.io/${{ lowercase(github.repository) }}-frontend:latest
+            ghcr.io/${{ lowercase(github.repository) }}-frontend:${{ steps.get_version.outputs.version }}
           build-args: |
             USERNAME=${{ secrets.USERNAME }}
             GH_PACKAGES_TOKEN=${{ secrets.GHCR_TOKEN }}
@@ -124,7 +124,7 @@ jobs:
           context: ./src/db
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}-db:latest
+            ghcr.io/${{ lowercase(github.repository) }}-db:latest
           build-args: |
             USERNAME=${{ secrets.USERNAME }}
             GH_PACKAGES_TOKEN=${{ secrets.GHCR_TOKEN }}
