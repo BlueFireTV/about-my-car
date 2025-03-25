@@ -28,8 +28,6 @@ services:
   db:
     image: ghcr.io/org-bftv/about-my-car-db:latest
     container_name: db
-    volumes:
-      - ./postgresql:/var/lib/postgresql/data
     ports:
       - "5433:5432"
     env_file:
