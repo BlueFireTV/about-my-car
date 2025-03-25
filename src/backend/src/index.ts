@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import carsRouter from './cars/cars-index';
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,9 @@ app.use(express.json({ limit: '50mb' }));
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+
+app.use('/api/car', carsRouter);
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

@@ -9,18 +9,18 @@ import {
     updateCar
 } from './cars-controller';
 
-const carRouter = express.Router();
+const carsRouter = express.Router();
 
 
-carRouter.get('/all/',getAllCars);
-carRouter.get('/all/:id',getCarsByUser);
+carsRouter.get('/all/',getAllCars);
+carsRouter.get('/all/:id',getCarsByUser);
 
-carRouter.post('/rsi/:carId',setRegularServiceItem);
-carRouter.get('/rsi/:carId',getRegularServiceItem);
+carsRouter.post('/rsi/:carId',setRegularServiceItem);
+carsRouter.get('/rsi/:carId',getRegularServiceItem);
 
 
-carRouter.post('/createCar', createCar);
-carRouter.put('/updateCar/:carId', updateCar);
-carRouter.delete('/deleteCar/:carId', deleteCar);
+carsRouter.post('/createCar', createCar);
+carsRouter.put('/updateCar/:carId', updateCar);
+carsRouter.delete('/deleteCar/:carId', deleteCar);
 
-export default carRouter;
+export default carsRouter;
