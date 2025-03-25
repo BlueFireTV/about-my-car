@@ -6,5 +6,5 @@ export type User = {
     password: string;
     surname: string;
     name: string;
-    car: Car[];
+    car: Car;
 }

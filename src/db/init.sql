@@ -25,7 +25,6 @@ CREATE TABLE Cars (
     model_year VARCHAR(4),
 	initial_approval DATE,
     note TEXT,
-	picture TEXT,
 
     -- VRD
     vrd_picture TEXT,

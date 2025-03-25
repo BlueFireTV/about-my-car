@@ -1,5 +1,5 @@
 import {query} from '../db';
-import { Car, CarPicture, RegularService } from '../types/car';
+import { Car, RegularService } from '../types/car';
 import { User } from '../types/user';
 
 export async function getAllCarsQuery(): Promise<Car[]> {
@@ -25,7 +25,6 @@ export async function getAllCarsQuery(): Promise<Car[]> {
             model: carRow.model,
             modelYear: carRow.model_year,
             initialApproval: carRow.initial_approval,
-            picture: [] as CarPicture[],
             vrdPicture: carRow.vrd_picture,
             regularServiceItem: [] as RegularService[]
         } as Car;
@@ -70,7 +69,6 @@ export async function getCarById(id: number): Promise<Car> {
     } as Car;
 
     car.regularServiceItem = await getRegularServiceItemByCarId(id);
-    car.picture = await getCarPictureByCarId(id);
 
     return car;
 }
@@ -191,34 +189,10 @@ function formateDateUTCToLocal(date: Date): Date
     return newDate;
 }
 
-// Get all car pictures by car id
-async function getCarPictureByCarId(carId: number): Promise<CarPicture[]> {  
-    const carPhotosSql = `SELECT * FROM CarPicture WHERE car_id = $1`;
-    const carPhotoRows = await query(carPhotosSql, [carId]);
-
-    if(carPhotoRows === null){
-        return Promise.reject({ status: 500, message: 'Car not found' });
-    }
-
-    const carPhotoArray = new Array<CarPicture>();
-
-    for (const row of carPhotoRows) {
-        let carPhoto = {
-            id: row.id,
-            car_id: row.car_id,
-            picture: row.picture,
-        } as CarPicture;
-
-        carPhotoArray.push(carPhoto);
-    }
-
-    return carPhotoArray;
-}
-
 
 export async function createCarToUser(User: User): Promise<number> {
 
-    const newCar = User.car[0];
+    const newCar = User.car;
 
 
     const carResult = await query(
@@ -241,17 +215,6 @@ export async function createCarToUser(User: User): Promise<number> {
           User.id,
         ]
     ) as { id: number }[];
-
-    newCar.picture.forEach(element => {
-        query(
-            `INSERT INTO CarPicture (car_id, picture) 
-             VALUES ($1, $2)`,
-            [
-              carResult[0].id,
-              element.picture,
-            ]
-        );  
-    });
 
     return carResult[0].id;
 }
@@ -289,46 +252,6 @@ export async function updateCarById(carId: number, car: Car): Promise<Car> {
             carId,
         ]
     );
-
-     
-
-    if(car.picture ){
-        
-        //Get all picture ids for the car
-        const carPhotosSql = `SELECT id FROM CarPicture WHERE car_id = $1`;
-        const carPhotoRows = await query(carPhotosSql, [carId]);
-
-        if(carPhotoRows === null){
-            return Promise.reject({ status: 500, message: 'Car not found' });
-        }
-
-        //Extract the ids
-        const dbIds = carPhotoRows.map((row: { id: number }) => row.id);
-
-        //Extract the ids from the input pictures
-        const inputIds = car.picture.map((cp) => cp.id).filter((id) => id !== null);
-
-        //Identify the ids to delete
-        const idsToDelete = dbIds.filter((id) => !inputIds.includes(id));
-
-        //Remove the ids that are no longer in the input pictures   
-        if (idsToDelete.length > 0) {
-            const deleteQuery = `DELETE FROM CarPicture WHERE id = ANY($1)`;
-            await query(deleteQuery, [idsToDelete]);
-        }
-
-        //No need to update the pictures, because they are not editable
-        //Insert the new pictures
-        for (const cp of car.picture) {
-            if (cp.id === -1) {
-                await query(
-                    `INSERT INTO CarPicture (car_id, picture) VALUES ($1, $2)`,
-                    [carId, cp.picture]
-                );
-            }
-        }
-
-    }
 
     return car;
 }

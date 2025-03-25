@@ -10,16 +10,9 @@ export type Car = {
     model: string;
     modelYear: string;
     initialApproval: Date;
-    picture: CarPicture[];
     regularServiceItem: RegularService[];
     note: string;
     vrdPicture: string;
-};
-
-export type CarPicture = {
-    id: number;
-    car_id: number;
-    picture: string;
 };
 
 export type RegularService =  {
