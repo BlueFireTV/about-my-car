@@ -27,3 +27,24 @@
 .drag-over {
     border: 2px dashed var(--primary-color); /* Highlight drop area */
 }
+
+.home-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--margin-small);
+}
+
+.home-info {
+    display: row;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--margin-large);
+    background-color: var(--bg-secondary);
+    padding: var(--padding-large);
+    border-radius: var(--radius-medium);
+    margin: var(--margin-medium);
+    box-shadow: var(--shadow-medium);
+}
+
+.feature-list {
+    margin-left: var(--margin-medium);
+}

@@ -25,12 +25,6 @@
     margin-bottom: 0;
 }
 
-.sort-action {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* Space between the icon and the text */
-}
-
 .due-soon {
     background-color: #862727; /* Light red background */
 }
@@ -39,7 +33,7 @@
     background-color: #a34747; /* Light red background */
 }
 
-.car-pictures-empty, .regular-service-items, .service-entries {
+.regular-service-items {
     background-color: var(--bg-secondary);
     padding: var(--padding-large);
     border-radius: var(--radius-medium);
@@ -52,7 +46,7 @@
     justify-content: space-between;
 }
 
-.actionRSIBtn, .actionAddServiceEntryBtn {
+.actionRSIBtn {
     width: 32px;
     height: 32px;
     margin-left: 12px;
@@ -64,10 +58,6 @@
 
 .actionRSIBtn:hover {
     background-color: var(--color-danger); 
-}
-
-.actionAddServiceEntryBtn:hover {
-    background-color: var(--color-success);
 }
 
 .year {

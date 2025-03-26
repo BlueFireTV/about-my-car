@@ -1,5 +1,7 @@
 import { fetchWeatherApi } from 'openmeteo';
 import { Request, Response } from 'express';
+import { timeStamp } from 'console';
+import { Forecast, History } from '../types/weatherTypes';
 
 const range = (start: number, stop: number, step: number) =>
     Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
@@ -25,19 +27,16 @@ export async function getForecast(request: Request, response: Response) {
         
         const hourly = responseData.hourly()!;
 
-        const weatherData = {
+        const weatherData:Forecast = {
 
-                    forecast: {
-                time: range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
+            time: range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
                 (t) => new Date((t + utcOffsetSeconds) * 1000)
                 ),
                 precipitation: hourly.variables(0)!.valuesArray()!,
                 temperature2m: hourly.variables(1)!.valuesArray()!,
-                },
+                };
 
-        };
-
-        response.status(200).send(weatherData);
+        response.status(200).json(weatherData);
 
     } catch (error) {
         console.error(error);
@@ -65,18 +64,15 @@ export async function getHistory(request: Request, response: Response) {
         
         const hourly = responseData.hourly()!;
 
-        const weatherData = {
+        const weatherData: History = {
 
-                history: {
             time: range(Number(hourly.time()), Number(hourly.timeEnd()), hourly.interval()).map(
             (t) => new Date((t + utcOffsetSeconds) * 1000)
             ),
             temperature2m: hourly.variables(0)!.valuesArray()!,
-            },
+            };
 
-        };
-
-        response.status(200).send(weatherData);
+        response.status(200).json(weatherData);
 
     } catch (error) {
         console.error(error);
