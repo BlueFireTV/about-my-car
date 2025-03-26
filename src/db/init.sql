@@ -26,9 +26,6 @@ CREATE TABLE Cars (
 	initial_approval DATE,
     note TEXT,
 
-    -- VRD
-    vrd_picture TEXT,
-
     -- Foreign Keys
     user_id INT NOT NULL REFERENCES Users(id) ON DELETE CASCADE,
 
@@ -56,13 +53,13 @@ INSERT INTO Users (username, password, surname, name) VALUES
 ('admin', '$2b$10$bZMmFhgISc4e0nnoY8Mce.R9fSn5jSMAzbf2JyY19EFpl2LPlWx2y', 'Admin', 'Admin');
 
 -- Inital Car
-INSERT INTO Cars (vin, hsn, tsn, enginecode, transmissioncode, platenumber, brand, model, model_year, user_id) VALUES
-('WVWZZZ1JZ3W000000', '0603', '123', 'AEX', 'EYK', 'B-12345', 'VW', 'Golf', '2003', 1);
+INSERT INTO Cars (vin, hsn, tsn, enginecode, transmissioncode, platenumber, brand, model, model_year, initial_approval, note, user_id) VALUES
+('WVWZZZ1JZ3W000000', '0603', '123', 'CBRC', 'PGT', 'RO-XX 555', 'VW', 'Golf', '2013', '2013-10-25', 'Super tolles Auto, selten in der Werkstatt', 1);
 
 -- Inital RegularServiceItem
 INSERT INTO RegularServiceItems (name, date, interval, note, car_id) VALUES
-('Ölwechsel', '2020-01-01', 365, 'Ölwechsel mit Filter', 1),
-('Bremsen', '2020-01-01', 365, 'Bremsen prüfen', 1),
-('Reifen', '2020-01-01', 365, 'Reifen prüfen', 1),
-('Zündkerzen', '2020-01-01', 365, 'Zündkerzen prüfen', 1),
-('Klima', '2020-01-01', 365, 'Klima prüfen', 1);
+('Ölwechsel', '2024-01-01', 12, 'Ölwechsel mit Filter', 1),
+('Luftfilterwechsel', '2025-01-01', 24, 'Luftfilterwechsel', 1),
+('Pollenfilterwechsel', '2025-01-01', 24, 'Pollenfilterwechsel', 1),
+('Kraftstofffilterwechsel', '2022-01-01', 48, 'Kraftstofffilterwechsel', 1),
+('Zündkerzenwechsel', '2022-01-01', 48, 'Zündkerzenwechsel', 1);

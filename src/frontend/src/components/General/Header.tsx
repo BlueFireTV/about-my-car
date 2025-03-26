@@ -70,10 +70,8 @@ const Header: React.FC = () => {
 
             {!authContext?.isLoggedIn && (
                 <>
-                    <button>
-                        <Link
-                            to="/login"
-                        >
+                    <button className='login-button'>
+                        <Link className='login-link' to="/login">
                             Login
                         </Link>
                     </button>

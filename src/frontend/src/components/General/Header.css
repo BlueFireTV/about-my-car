@@ -67,7 +67,7 @@
 }
 
 .user-header-group {
-    display: flex;
+    display: inline-flex;
     font-size: var(--font-size-large);
 }
 
@@ -139,6 +139,27 @@
     margin-left: auto;
 }
 
+.login-button {
+  
+    color: var(--color-text-primary);
+    font-size: var(--font-size-small);
+    border: none;
+    padding: var(--padding-small);
+    cursor: pointer;
+    border-radius: var(--radius-medium);
+    display: flex;
+    align-items: center;
+  }
+  
+  .login-button:hover {
+    background-color: var(--color-success);
+  }
+  
+  .login-link{
+    text-decoration: none;
+  }
+
+  
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .nav {

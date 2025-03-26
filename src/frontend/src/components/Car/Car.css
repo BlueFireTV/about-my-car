@@ -130,6 +130,7 @@
     border: 1px solid var(--border-color);
     border-radius: var(--radius-small);
     background-color: var(--bg-tertiary);
+    font-size: var(--font-size-small);
     color: var(--color-text-primary);
     resize: none;
 }

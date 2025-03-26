@@ -132,6 +132,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
 
   const handleUpdateRsiCar = async () => {
     await setRegularServiceItem(car.id, regularServices, authContext!.logout);
+    
     queryClient.invalidateQueries({ queryKey: ["usercar", user.id], exact: true });
 
     setShowForm(false);

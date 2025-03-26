@@ -44,7 +44,7 @@ export async function setRegularServiceItem(carId: number, regularServices: Regu
         return Promise.reject('401 Unauthorized');
     }
 
-    return await response.json();
+    return Promise.resolve();
 }
 
 export async function addNewCar(user: User): Promise<number> {
