@@ -1,7 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import {getCarByUser, getRegularServiceItem, getAllCars} from "../api/cars.api.ts";
-
-//TODO QUERYS ABSCHAFFEN IN DIESEN FILES
+import {getCarByUser, getAllCars} from "../api/cars.api.ts";
 
 export function useGetAllCars() {
     return useSuspenseQuery({
@@ -15,18 +13,4 @@ export function useGetCarByUser(id: number, logoutCallback: () => void) {
         queryKey: ['usercar', id],
         queryFn: () => getCarByUser(Number(id), logoutCallback)
     });
-}
-
-export function useGetRegularServiceItem(carId: number) {
-    return useSuspenseQuery({
-        queryKey: ['rsi', carId],
-        queryFn: () => getRegularServiceItem(carId)
-    });
-}
-
-export function useGetNextRegularServiceByCarId(carId: number) {
-    return useSuspenseQuery({
-        queryKey: ["nextRegularServices", carId],
-        queryFn: () => getRegularServiceItem(carId),
-      });
 }

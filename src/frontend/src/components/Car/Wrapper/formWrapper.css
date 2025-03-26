@@ -1,0 +1,23 @@
+.form-dialog-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-large);
+    padding-bottom: 0;
+}
+
+.form-dialog-content-title {
+    margin: 0;
+    text-align: center;
+    padding-bottom: var(--padding-small);
+}
+
+.form-dialog-content-children{
+    padding: 20px;
+}
+@media (max-width: 768px) {
+    .form-dialog-content-children{
+        padding: 10px;
+    }    
+}

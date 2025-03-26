@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Header from "../General/Header.tsx";
 import Spinner from "../Spinner/Spinner.tsx";
 import "./Car.css";
-import { CarIcon, Wrench, FileText, StickyNote,Database} from "lucide-react";
+import { CarIcon, Wrench, FileText, StickyNote,Database, PencilLine} from "lucide-react";
 import { useGetCarByUser } from "../../Data/carData.ts";
 import { AuthContext } from "../../context/AuthContext.tsx";
+import RsiEdit from "./RsiEdit.tsx";
+import { motion } from "motion/react";
 
 
 
@@ -13,9 +15,20 @@ const CarDetail: React.FC = () => {
     if(!authContext?.user) {
         return <Spinner />;
     }
-    const userId = authContext.user.id;
+    const user = authContext.user;
+    const userId = user.id;
 
-    const { data: car, isLoading: carLoading, error: carError} = useGetCarByUser(userId!, authContext!.logout);
+    const { data: car, isLoading: carLoading, error: carError} = useGetCarByUser(userId, authContext!.logout);
+
+    const [showFormRegularServiceDialog, setShowFormRegularServiceDialog] = useState(false);
+    const editRsiDialogRef = useRef<HTMLDialogElement | null>(null);
+
+    function openRegularServiceDialog() {
+        setShowFormRegularServiceDialog(true);
+        editRsiDialogRef.current?.showModal();
+    }
+
+
     if (carLoading) {
     
         return <Spinner />;
@@ -28,6 +41,8 @@ const CarDetail: React.FC = () => {
     if (!car) {
         return <div>Auto nicht gefunden</div>;
     }
+
+    authContext.user = { ...authContext.user, car: car };
 
     return (
         <div>
@@ -97,6 +112,15 @@ const CarDetail: React.FC = () => {
                 <section className="regular-service-items">
                     <div className="regular-service-header">
                         <h2>Regelmäßige Service-Elemente</h2>
+                        <motion.button 
+                                className="actionRSIBtn"
+                                onClick={() => openRegularServiceDialog()}
+                                whileHover={{ scale: 1.1 }} 
+                                whileTap={{ scale: 0.9 }}
+                                aria-label="Regelmäßige Service-Elemente bearbeiten"
+                            >
+                                <PencilLine size={22} />
+                        </motion.button>
                     </div>
                     {car.regularServiceItem.length > 0 ? (
                     <div className="tableContainer">
@@ -132,6 +156,10 @@ const CarDetail: React.FC = () => {
                 </section>
             </div>
         </div>
+            {showFormRegularServiceDialog && (
+                <RsiEdit setShowForm={setShowFormRegularServiceDialog} user={user} />
+                  
+            )}
     </div>
     );
 };

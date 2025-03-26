@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: ghcr.io/org-bftv/about-my-car-frontend:latest
+    image: ghcr.io/bluefiretv/about-my-car-frontend:latest
     container_name: frontend
     ports:
       - "8080:80"
@@ -14,7 +14,7 @@ services:
       - backend
 
   backend:
-    image: ghcr.io/org-bftv/about-my-car-backend:latest
+    image: ghcr.io/bluefiretv/about-my-car-backend:latest
     container_name: backend
     ports:
       - "3133:3133"
@@ -26,7 +26,7 @@ services:
       - db
 
   db:
-    image: ghcr.io/org-bftv/about-my-car-db:latest
+    image: ghcr.io/bluefiretv/about-my-car-db:latest
     container_name: db
     ports:
       - "5433:5432"

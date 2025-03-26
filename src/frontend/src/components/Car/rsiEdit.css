@@ -1,0 +1,224 @@
+.rsi-edit-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.rsi-edit-entry {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--margin-small);
+  background-color: var(--bg-secondary);
+  padding: var(--padding-medium);
+  border-radius: var(--radius-medium);
+  margin: var(--margin-small);
+  box-shadow: var(--shadow-medium);
+}
+
+.rsi-edit-entry-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--margin-small);
+}
+
+.change-rsi-dialog {
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 60%;
+  max-height: 80vh;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto ;
+  z-index: 100;
+}
+
+.dialog-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Backdrop styling for the modal */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4); /* Adds a semi-transparent background */
+  backdrop-filter: blur(4px); /* Optional: Adds a blur effect */
+}
+
+.rsi-dialog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding-small);
+}
+
+.add-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.add-button {
+  
+  color: var(--color-text-primary);
+  border: none;
+  padding: var(--padding-small);
+  cursor: pointer;
+  border-radius: var(--radius-medium);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Abstand zwischen Text und Icon */
+}
+
+.add-button:hover {
+  background-color: var(--color-success);
+}
+
+.rsi-dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+/* Buttons */
+.back-action, .submit-action {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease;
+}
+
+.submit-action[type="submit"] {
+  background-color: var(--color-success);
+  color: white;
+}
+
+.back-action:hover, .submit-action:hover {
+  background-color: var(--bg-accent);
+}  
+
+.add-action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between the icon and the text */
+}
+
+
+/* Progress bar */
+.progressbar {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 0;
+  counter-reset: step;
+}
+
+.progressbar li {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  font-size: 12px;
+  color: #999;
+  text-transform: uppercase;
+}
+
+/* Step circle */
+.progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px; /* Increased size */
+  height: 30px; /* Increased size */
+  line-height: 30px; /* Match the height for proper alignment */
+  display: block;
+  margin: 0 auto 10px auto;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  background: white;
+  color: #555;
+  font-size: 16px; /* Slightly larger text */
+  font-weight: bold; /* Bold font for better visibility */
+}
+
+/* Connecting lines */
+.progressbar li:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+  top: 20px; /* Adjusted to match the larger circle */
+  left: 50%;
+  z-index: -1;
+}
+
+.progressbar li:last-child:after {
+  content: none;
+}
+
+/* Completed steps */
+.progressbar li.completed:before {
+  background: #ff9a76;
+  color: white;
+  border-color: #ff9a76;
+}
+
+.progressbar li.completed:after {
+  background: #ff9a76;
+}
+
+/* Current active step */
+.progressbar li.active:before {
+  background: white;
+  color: #ff9a76;
+  border-color: #ff9a76;
+}
+
+.progressbar li.active:after {
+  background: #ccc; /* Keeps the line gray after the current step */
+}
+
+/* Unvisited steps */
+.progressbar li:not(.completed):not(.active):before {
+  background: white;
+  color: #555;
+  border-color: #ccc;
+}
+
+.progressbar li:not(.completed):not(.active):after {
+  background: #ccc;
+}
+
+
+#serviceSelect, input[type="number"] { 
+  flex-wrap: wrap;
+  background-color: var(--bg-secondary);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: var(--padding-small);
+  color: var(--text-primary);
+  font-size: var(--font-size-small);
+  text-align: center;
+  cursor: pointer;
+  margin-right: var(--margin-medium);
+}
+
+input[type="number"] {
+  width: 50px;
+}
+  
+input[type="number"]:hover {
+  border-color: var(--bg-accent);
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--bg-accent);
+  box-shadow: 0 0 0 2px rgba(var(--bg-accent-rgb), 0.2);
+}
