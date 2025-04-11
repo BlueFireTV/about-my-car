@@ -1,7 +1,10 @@
-= About My Car
+# Willkommen bei AboutMyCar
 
-== Beschreibung
+## Öffentliche Feature:
+- Empfehlung zum Autowaschen
+- Empfehlung für Winterreifen
 
-- Services im Blick zu halten
-- Fahrzeugscheinbild über Kamera/Webcam/Bild hochladen und daten aus diesem auslesen
+## Login Features:
+- Sehe alle Infos zu deinem Auto
+- Verwalte deine Services
 
