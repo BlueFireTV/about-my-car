@@ -1,0 +1,122 @@
+= arc42 Architektur-Dokumentation: About My Car
+:doctype: book
+:toc: left
+:toclevels: 2
+:sectnums:
+:icons: font
+:imagedir: img/
+:source-highlighter: highlightjs
+
+== Einleitung und Ziele
+
+=== Aufgabenstellung
+
+„About My Car“ ist eine Webanwendung zur Eingabe und Anzeige von Fahrzeuginformationen. Nutzer können ihre Daten lokal erfassen und verwalten. Die Anwendung läuft vollständig im Browser.
+
+=== Qualitätsziele
+
+|===
+| Qualität        | Ziel
+
+| Usability       | Intuitive, einfache Nutzung durch Benutzer
+| Wartbarkeit     | Klare Strukturierung des Codes
+| Portabilität    | Bereitstellung über Docker
+| Erweiterbarkeit | Einfache Integration neuer Features
+|===
+
+=== Stakeholder
+
+|===
+| Rolle          | Interesse
+
+| Endnutzer      | Einfache Verwaltung ihrer Fahrzeugdaten
+| Entwickler     | Erweiterbarkeit, einfacher Code
+| Administratoren| Einfaches Deployment per Docker
+|===
+
+== Randbedingungen
+
+* Frontend: React mit TypeScript
+* Backend: Node.js mit Express
+* Persistenz: PostgreSQL
+* Bereitstellung über Docker
+
+== Kontextabgrenzung
+
+=== Kontextdiagramm
+
+image:img/context.png[align="center", alt="Kontextdiagramm"]
+
+=== Erläuterung
+
+* Benutzer interagieren über den Webbrowser.
+* Es findet keine Kommunikation mit Backend oder externen Services statt.
+
+== Lösungsstrategie
+
+* Clientseitige mit React
+* Verwendung von TypeScript zur besseren Wartbarkeit
+* Deployment über Docker (statische App)
+* Fokus auf einfache, benutzerfreundliche UI
+
+== Bausteinsicht
+
+=== Hauptkomponenten
+
+image:img/haupt.png[align="center", alt="Hauptkomponenten"]
+
+=== Beschreibung
+
+* `Homepage`: Startseite mit Navigation und Wettervorhersagen
+* `Fahrzeug-Datenanzeige`: Anzeige aller Informationen
+* `Service-Formular`: Eingabe von Servicedaten
+
+== Laufzeitsicht
+
+=== Nutzungsszenario: Service erfassen
+
+. Nutzer öffnet die Anwendung im Browser.
+. Nutzer loggt sich ein.
+. Nutzer navigiert zur Seite „Auto“.
+. Nutzer klickt auf „Services bearbeiten“.
+. Die Formularansicht wird angezeigt.
+. Nutzer füllt das Formular aus.
+. Nach Absenden erscheinen die Daten in der Anzeige-Komponente.
+
+== Verteilungssicht
+
+image:img/verteilung.png[align="center", alt="Verteilungssicht"]
+
+
+* Webapp läuft im Browser
+* Bereitstellung über Docker-Container
+* Nginx als Reverse Proxy
+* Backend und Datenbank ebenfalls in Containern
+* Datenbank: PostgreSQL
+* Backend: Node.js mit Express
+* Frontend: React mit TypeScript
+* Statische Bereitstellung der App über Nginx
+
+== Querschnittliche Konzepte
+
+* **State-Management**: über React `useState`, `useEffect`
+* **UI/UX**: minimalistisch, responsiv
+* **Build Tooling**: Vite
+
+== Entwurfsentscheidungen
+
+* React für die UI-Entwicklung
+* Statische Bereitstellung per Docker
+* Typsicherheit durch TypeScript
+
+
+== Qualitätsanforderungen
+
+|===
+| Szenario                          | Erwartetes Verhalten
+
+| Nutzer gibt viele Daten ein       | App bleibt responsiv
+| App wird auf anderem Gerät geladen| Daten sind vorhanden
+| Eingabefehler                     | Benutzer erhält visuelles Feedback
+| Falscher Login                    | Benutzer erhält Fehlermeldung
+|===
