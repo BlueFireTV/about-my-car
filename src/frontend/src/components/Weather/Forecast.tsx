@@ -3,7 +3,7 @@ import "./Forecast.css";
 import { useGetWeatherForecast } from "../../Data/weatherData";
 import Spinner from "../Spinner/Spinner";
 import { Forecast } from "../../types/weatherTypes";
-import { Check, CloudLightning, X } from "lucide-react";
+import { Check, CloudLightning, X, Zap } from "lucide-react";
 
 
 const ForecastComponent: React.FC = () => {
@@ -13,13 +13,24 @@ const ForecastComponent: React.FC = () => {
         return <Spinner />;
     }
 
-    if (forecastError) {
-        return <div>Fehler beim Laden der Wettervorhersage</div>;
+    if (forecastError || !forecast) {
+        return (<section className="home-info">
+            <div className="info-header">
+            <h2>Wettervorhersage</h2>
+            </div>
+            <div className="info-section">    
+                <h3>Lohnt sich Autowaschen?</h3>
+
+                <div className="weather-result"><p><Zap/> Keine Wetterdaten gefunden.</p></div>
+            </div>
+            <div className="info-section">    
+            <h3>Sollte man mit Winterreifen fahren?</h3>
+            
+                <div className="weather-result"><p><Zap/> Keine Wetterdaten gefunden.</p></div>
+            </div>
+        </section>);
     }
 
-    if (!forecast) {
-        return <div>Wettervorhersage nicht gefunden</div>;
-    }
     console.log(forecast);
 
     const shouldIWash = (forecast:Forecast): boolean => {

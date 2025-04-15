@@ -48,3 +48,18 @@
 .feature-list {
     margin-left: var(--margin-medium);
 }
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-medium);
+    background-color: var(--bg-secondary);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-medium);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

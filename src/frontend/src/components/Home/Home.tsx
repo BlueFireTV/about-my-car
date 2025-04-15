@@ -42,6 +42,10 @@ const Home: React.FC = () => {
                     <ForecastComponent />
                 </div>
             </div>
+            <footer className="footer">
+                <p>© 2025 AboutMyCar</p>
+                <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>
+            </footer>
         </div>
     );
 };
