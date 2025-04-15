@@ -7,10 +7,7 @@ build:
 
 python:
   install:
-    - method: pip
-      packages:
-        - mkdocs
-        - mkdocs-asciidoc-plugin
+    - requirements: requirements.txt
 
 mkdocs:
   configuration: mkdocs.yml
