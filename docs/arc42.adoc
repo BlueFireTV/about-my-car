@@ -149,6 +149,3 @@ image:img/verteilung.png[align="center", alt="Verteilungssicht"]
 * **Vite**: Build-Tool für moderne Webanwendungen
 * **Container**: Leichtgewichtige, portable Umgebung für Anwendungen
 * **Reverse Proxy**: Vermittler zwischen Client und Server
-
-
-
