@@ -1,6 +1,6 @@
 site_name: About My Car
 theme:
-  name: material
+  name: readthedocs
 nav:
   - Home: README.adoc
   - Arc42: docs/arc42.adoc
