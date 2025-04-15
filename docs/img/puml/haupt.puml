@@ -1,0 +1,7 @@
+@startuml haupt
+
+package "About My Car" {
+  [Homepage]
+  [Fahrzeug-Datenanzeige] <-- [Service-Formular] 
+}
+@enduml

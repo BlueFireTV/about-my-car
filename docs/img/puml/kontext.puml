@@ -1,0 +1,8 @@
+@@startuml kontext
+
+actor Benutzer
+rectangle "About My Car" {
+}
+Benutzer --> "About My Car"
+
+@enduml
