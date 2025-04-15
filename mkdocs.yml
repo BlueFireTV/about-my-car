@@ -2,5 +2,3 @@ site_name: About My Car
 theme:
   name: readthedocs
 docs_dir: docs
-nav:
-  - Arc42: arc42.adoc
