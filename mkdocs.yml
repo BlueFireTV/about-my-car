@@ -3,5 +3,4 @@ theme:
   name: readthedocs
 docs_dir: docs
 nav:
-  - ReadMe: ../README.adoc
   - Arc42: arc42.adoc
