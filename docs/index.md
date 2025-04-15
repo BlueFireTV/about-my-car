@@ -1,4 +1,4 @@
-# Über Mein Auto$SELECTION_PLACEHOLDER$
+# About My Car
 
 Willkommen zur Dokumentation!
 
