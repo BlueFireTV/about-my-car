@@ -1,2 +1,1 @@
-mkdocs
-mkdocs-asciidoc-plugin
+git+https://github.com/matthiasbeyer/mkdocs-asciidoc-plugin.git
