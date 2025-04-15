@@ -1,5 +1,5 @@
-# About My Car
+# Über Mein Auto$SELECTION_PLACEHOLDER$
 
-Welcome to the documentation!
+Willkommen zur Dokumentation!
 
-→ Check out the full architecture docs here: [Arc42](arc42.md)
+→ Schauen Sie sich die vollständige Architekturdokumentation hier an: [Arc42](arc42.md)
