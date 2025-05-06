@@ -19,14 +19,14 @@ const CarDetail: React.FC = () => {
         return <Spinner />;
     }
     const user = authContext.user;
-    const userId = user.id;
+    const userId = user?.id;
     const logoutFunction = authContext.logout;
 
-    if(!userId || !logoutFunction) {
+    const { data: car, isLoading: carLoading, error: carError } = useGetCarByUser(userId, logoutFunction);
+
+    if (!userId || !logoutFunction) {
         return <Spinner />;
     }
-
-    const { data: car, isLoading: carLoading, error: carError} = useGetCarByUser(userId, logoutFunction);
 
     
     function openRegularServiceDialog() {
