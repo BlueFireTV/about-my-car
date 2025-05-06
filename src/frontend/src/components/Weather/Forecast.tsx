@@ -46,7 +46,7 @@ const ForecastComponent: React.FC = () => {
 
         console.log(days);
 
-        const dates = Object.keys(days).sort().slice(0, 3);
+        const dates = Object.keys(days).sort((a, b) => a.localeCompare(b)).slice(0, 3);
         for (const date of dates) {
             if (days[date] > 0) {
             return true;

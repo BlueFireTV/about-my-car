@@ -12,17 +12,23 @@ import { motion } from "motion/react";
 
 const CarDetail: React.FC = () => {
     const authContext = useContext(AuthContext);
+    const [showFormRegularServiceDialog, setShowFormRegularServiceDialog] = useState(false);
+    const editRsiDialogRef = useRef<HTMLDialogElement | null>(null);
+
     if(!authContext?.user) {
         return <Spinner />;
     }
     const user = authContext.user;
     const userId = user.id;
+    const logoutFunction = authContext.logout;
 
-    const { data: car, isLoading: carLoading, error: carError} = useGetCarByUser(userId, authContext!.logout);
+    if(!userId || !logoutFunction) {
+        return <Spinner />;
+    }
 
-    const [showFormRegularServiceDialog, setShowFormRegularServiceDialog] = useState(false);
-    const editRsiDialogRef = useRef<HTMLDialogElement | null>(null);
+    const { data: car, isLoading: carLoading, error: carError} = useGetCarByUser(userId, logoutFunction);
 
+    
     function openRegularServiceDialog() {
         setShowFormRegularServiceDialog(true);
         editRsiDialogRef.current?.showModal();
