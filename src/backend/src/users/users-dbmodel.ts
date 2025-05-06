@@ -8,8 +8,8 @@ export async function getOne(username: string): Promise<User> {
        
       return result[0];
     } catch (error) {
-       
-      throw error;
+      console.error('Error fetching user:', error);
+      return Promise.reject(new Error('User not found'));
     }
   }
 
@@ -22,7 +22,7 @@ export async function getOne(username: string): Promise<User> {
   
       return user;
     } catch (error) {
-       
-      return null;
+      console.error('Error creating user:', error);
+      return Promise.reject(new Error('Could not create user'));
     }
   }
