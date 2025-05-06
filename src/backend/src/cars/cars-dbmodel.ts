@@ -8,7 +8,7 @@ export async function getAllCarsQuery(): Promise<Car[]> {
     const carRows = await query(carsSql);
 
     if(carRows === null){
-        return Promise.reject({ status: 500, message: 'Car not found' });
+        return Promise.reject(new Error('Car not found'));
     }
 
     for (const carRow of carRows) {
@@ -41,11 +41,11 @@ export async function getCarById(id: number): Promise<Car> {
     const carRows = await query(carByIdSql, [id]);
 
     if(carRows === null){
-        return Promise.reject({ status: 500, message: 'Car not found' });
+        return Promise.reject(new Error('Car not found'));
     }
 
     if (carRows.length === 0) {
-        return Promise.reject({ status: 500, message: 'Car not found' });
+        return Promise.reject(new Error('Car not found'));
     }
 
     const carRow = carRows[0];
@@ -74,13 +74,12 @@ export async function getCarById(id: number): Promise<Car> {
 }
 
 export async function getCarByUserId(UserId: number): Promise<Car> {
-    const carArray = new Array<Car>();
     const allCarsSql = `SELECT *  FROM public.cars WHERE User_id = $1`;
     const carRows = await query(allCarsSql, [UserId]);
-    var car : Car = {} as Car;
+    let car : Car = {} as Car;
 
     if(carRows === null){
-        return Promise.reject({ status: 500, message: 'Car not found' });
+        return Promise.reject(new Error('Car not found'));
     }
 
     const carRow = carRows[0];
@@ -110,7 +109,7 @@ export async function getRegularServiceItemByCarId(carId: number): Promise<Regul
     const regularServiceItemRows = await query(allRegularServiceItemsSql, [carId]);
 
     if(regularServiceItemRows === null){
-        return Promise.reject({ status: 500, message: 'Car not found' });
+        return Promise.reject(new Error('Car not found'));
     }
 
     const regularServiceItemArray = new Array<RegularService>();
