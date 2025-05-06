@@ -1,4 +1,4 @@
-import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
 export interface CustomRequest extends Request {
@@ -18,6 +18,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
 
    next();
  } catch (err) {
-   res.status(401).send('Please authenticate');
+    res.status(401).send('Please authenticate');
+    console.error('Authentication error:', err);
  }
 };
