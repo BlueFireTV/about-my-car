@@ -55,22 +55,22 @@ const Login: React.FC = () => {
             <form onSubmit={handleSubmit} className="loginForm">
                 <div className="formGroup">
                     <label>Nutzername:
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Username eingeben"
-                        />
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Username eingeben"
+                    />
                     </label>
                 </div>
                 <div className="formGroup">
                     <label>Passwort:
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Passwort eingeben"
-                        />
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="Passwort eingeben"
+                    />
                     </label>
                 </div>
                 <button type="submit" className="loginButton">Login</button>
