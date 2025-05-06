@@ -14,20 +14,12 @@ const CarDetail: React.FC = () => {
     const authContext = useContext(AuthContext);
     const [showFormRegularServiceDialog, setShowFormRegularServiceDialog] = useState(false);
     const editRsiDialogRef = useRef<HTMLDialogElement | null>(null);
+    const user = authContext?.user;
+    const userId = user?.id;
+    const logoutFunction = authContext?.logout;
+    const { data: car, isLoading: carLoading, error: carError } = useGetCarByUser(userId!, logoutFunction!);
 
-    if(!authContext) {
-        return <Spinner />;
-    }
-    const user = authContext.user;
-    if (!user) {
-        return <Spinner />;
-    }
-    const userId = user.id;
-    const logoutFunction = authContext.logout;
-
-    const { data: car, isLoading: carLoading, error: carError } = useGetCarByUser(userId, logoutFunction);
-
-    if (!userId || !logoutFunction) {
+    if (!authContext || !user) {
         return <Spinner />;
     }
 
