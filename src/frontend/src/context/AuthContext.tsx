@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useState, ReactNode, useEffect, useMemo } from 'react';
 import Cookies from 'js-cookie';
 import { User } from '../types/user';
 
@@ -36,8 +36,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setUser(null);
     };
 
+    const contextValue = useMemo(() => ({
+        isLoggedIn,
+        user,
+        login,
+        logout,
+    }), [isLoggedIn, user]);
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+        <AuthContext.Provider value={contextValue}>
             {children}
         </AuthContext.Provider>
     );
