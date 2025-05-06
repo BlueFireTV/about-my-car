@@ -16,7 +16,7 @@ type RsiEditProps = {
   user: User;
 };
 
-interface serviceValuesSelectorProps {
+interface ServiceValuesSelectorProps {
   disabledValues: string[];
 }
 
@@ -31,14 +31,14 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
   const [negativeIdCounter, setNegativeIdCounter] = useState(-1); // Start from -1
 
 
-  const [serviceValuesSelector, setServiceValuesSelector] = useState<serviceValuesSelectorProps>(() => ({
+  const [serviceValuesSelector, setServiceValuesSelector] = useState<ServiceValuesSelectorProps>(() => ({
     enabledValues: Object.values(serviceValues).filter((value) => !nextRegularservices.some((rsi) => rsi.name === value)),
     disabledValues: nextRegularservices.map((rsi) => rsi.name)
   }));
   
 
   const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const [regularServices, setregularService] = useState<RegularService[]>(nextRegularservices);
+  const [regularServices, setRegularService] = useState<RegularService[]>(nextRegularservices);
 
   const handleChange = (index: number, field: keyof RegularService, value: string | Date) => {
     if (field === "name") {
@@ -57,7 +57,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
       }
     }
 
-    setregularService((prev) => {
+    setRegularService((prev) => {
       console.log("test", serviceValuesSelector);
 
       const updatedRegularServices = [...prev];
@@ -83,7 +83,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
   const addNewRegularService = () => {
     const regularServiceName: RegularServiceValues = serviceValues.filter((value) => !serviceValuesSelector.disabledValues.includes(value))[0] as RegularServiceValues;
 
-    setregularService((prev) => [
+    setRegularService((prev) => [
       ...prev,
       {
       id: negativeIdCounter, // Ensure a unique negative ID
@@ -111,7 +111,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
       disabledValues: serviceValuesSelector.disabledValues.filter((value) => value !== regularServiceName)
     });
   
-    setregularService((prev) => {
+    setRegularService((prev) => {
       // Verify index validity
       setShowDeleteConfirmation(false);
       if (index < 0 || index >= prev.length) {
