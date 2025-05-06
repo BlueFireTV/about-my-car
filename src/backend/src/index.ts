@@ -7,8 +7,8 @@ import weatherRouter from './weather/weather-index';
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || "undefined";
- var corsOptions = {
+const PORT = process.env.PORT ?? "undefined";
+ let corsOptions = {
      origin: [/http:\/\/localhost:\d{4}/, /http:\/\/192.168.178.37:\d{4}/, /https:\/\/schurzmann.myds.me:\d{4}/],
      optionsSuccessStatus: 200
  };
