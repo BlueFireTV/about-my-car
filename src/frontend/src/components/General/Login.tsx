@@ -28,13 +28,16 @@ const Login: React.FC = () => {
         const response = await handleLogin(username.toLowerCase(), password);
 
         if (!response.ok) {
-            const errorMessage = response.status === 200
-                ? 'Login Erfolgreich!'
-                : response.status === 401
-                    ? 'Nutzername oder Kennwort ist falsch!'
-                    : response.status === 500
-                        ? 'Fehler! Versuche es später erneut!'
-                        : 'Unbekannter Fehler!';
+            let errorMessage: string;
+            if (response.status === 200) {
+                errorMessage = 'Login Erfolgreich!';
+            } else if (response.status === 401) {
+                errorMessage = 'Nutzername oder Kennwort ist falsch!';
+            } else if (response.status === 500) {
+                errorMessage = 'Fehler! Versuche es später erneut!';
+            } else {
+                errorMessage = 'Unbekannter Fehler!';
+            }
             setMessage(errorMessage);
             container?.classList.remove('expand'); // Rückgängig machen, falls Login fehlschlägt
             return;
@@ -51,22 +54,24 @@ const Login: React.FC = () => {
             <h1>Login</h1>
             <form onSubmit={handleSubmit} className="loginForm">
                 <div className="formGroup">
-                    <label>Nutzername:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Username eingeben"
-                    />
+                    <label>Nutzername:
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Username eingeben"
+                        />
+                    </label>
                 </div>
                 <div className="formGroup">
-                    <label>Passwort:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Passwort eingeben"
-                    />
+                    <label>Passwort:
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Passwort eingeben"
+                        />
+                    </label>
                 </div>
                 <button type="submit" className="loginButton">Login</button>
             </form>

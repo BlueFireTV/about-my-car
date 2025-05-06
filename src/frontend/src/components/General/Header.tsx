@@ -69,13 +69,11 @@ const Header: React.FC = () => {
             </nav>
 
             {!authContext?.isLoggedIn && (
-                <>
-                    <button className='login-button'>
-                        <Link className='login-link' to="/login">
-                            Login
-                        </Link>
-                    </button>
-                </>
+                <button className='login-button'>
+                    <Link className='login-link' to="/login">
+                        Login
+                    </Link>
+                </button>
             )}
 
             {authContext?.isLoggedIn && (

@@ -231,7 +231,7 @@
 @media (min-width: 769px) {
     .nav {
         display: flex;
-        align-items: start;
+        align-items: center;
         width: 100%;
     }
 
@@ -245,10 +245,5 @@
 
     .menu-toggle {
         display: none;
-    }
-
-    .nav {
-        display: flex;
-        align-items: center;
     }
 }
