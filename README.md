@@ -8,6 +8,8 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=BlueFireTV_about-my-car&metric=bugs)](https://sonarcloud.io/summary/new_code?id=BlueFireTV_about-my-car)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=BlueFireTV_about-my-car&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=BlueFireTV_about-my-car)
 
+📄 **Die vollständige Projektdokumentation ist verfügbar unter:**  
+👉 [ReadTheDocs](https://about-my-car.readthedocs.io/)
 
 
 ## Öffentliche Feature:
