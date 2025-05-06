@@ -1,6 +1,5 @@
 import { fetchWeatherApi } from 'openmeteo';
 import { Request, Response } from 'express';
-import { timeStamp } from 'console';
 import { Forecast, History } from '../types/weatherTypes';
 
 const range = (start: number, stop: number, step: number) =>
