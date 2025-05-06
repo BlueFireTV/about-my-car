@@ -8,8 +8,9 @@ type FormWrapperProps = {
 }
 
 
-export function FormWrapper({title, children}:
-FormWrapperProps){
+export function FormWrapper(
+    { title, children }: Readonly<FormWrapperProps>
+) {
     return (
         <>
             <div className="form-dialog-header">
