@@ -38,7 +38,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
   
 
   const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const [regularServices, setRegularService] = useState<RegularService[]>(nextRegularservices);
+  const [regularServices, setRegularServices] = useState<RegularService[]>(nextRegularservices);
 
   const handleChange = (index: number, field: keyof RegularService, value: string | Date) => {
     if (field === "name") {
@@ -57,7 +57,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
       }
     }
 
-    setRegularService((prev) => {
+    setRegularServices((prev) => {
       console.log("test", serviceValuesSelector);
 
       const updatedRegularServices = [...prev];
@@ -83,7 +83,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
   const addNewRegularService = () => {
     const regularServiceName: RegularServiceValues = serviceValues.filter((value) => !serviceValuesSelector.disabledValues.includes(value))[0] as RegularServiceValues;
 
-    setRegularService((prev) => [
+    setRegularServices((prev) => [
       ...prev,
       {
       id: negativeIdCounter, // Ensure a unique negative ID
@@ -111,7 +111,7 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
       disabledValues: serviceValuesSelector.disabledValues.filter((value) => value !== regularServiceName)
     });
   
-    setRegularService((prev) => {
+    setRegularServices((prev) => {
       // Verify index validity
       setShowDeleteConfirmation(false);
       if (index < 0 || index >= prev.length) {
