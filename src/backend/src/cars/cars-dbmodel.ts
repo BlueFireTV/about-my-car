@@ -138,7 +138,7 @@ export async function setRegularServiceItemByCarId(carId: number, regularService
         const allIdsFromRegularServiceItems = await query(queryText, [carId]);
 
         if(allIdsFromRegularServiceItems === null){
-            return Promise.reject({ status: 500, message: 'Car not found' });
+            return Promise.reject(new Error('Car not found'));
         }
 
         // Extract IDs from the result
@@ -174,7 +174,7 @@ export async function setRegularServiceItemByCarId(carId: number, regularService
 
     } catch (error) {
         console.error("Error:", error);
-        return Promise.reject({ status: 400, message: error });
+        return Promise.reject(new Error('Error while setting regular service items'));
     }
 }
 
