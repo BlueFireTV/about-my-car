@@ -12,7 +12,7 @@ export async function getCarByUser(id: number, logoutCallback: ()=> void): Promi
     const token = Cookies.get('token');
     if (!token) {
         logoutCallback();
-        return Promise.reject('No token');
+        return Promise.reject(new Error('No token'));
     }
 
     const response = await api.get(`cars/all/${id}` , { headers : { Authorization: `Bearer ${token}` } });
@@ -20,7 +20,7 @@ export async function getCarByUser(id: number, logoutCallback: ()=> void): Promi
     if (response.status === 401) {
         logoutCallback();
         Cookies.remove('token');
-        return Promise.reject('401 Unauthorized');
+        return Promise.reject(new Error('401 Unauthorized'));
     }
 
     return await response.json();
@@ -30,7 +30,7 @@ export async function setRegularServiceItem(carId: number, regularServices: Regu
     const token = Cookies.get('token');
     if (!token) {
         logoutCallback();
-        return Promise.reject('No token');
+        return Promise.reject(new Error('No token'));
     }
 
     const response = await api.post(`cars/rsi/${carId}`, { 
@@ -41,7 +41,7 @@ export async function setRegularServiceItem(carId: number, regularServices: Regu
     if (response.status === 401) {
         logoutCallback();
         Cookies.remove('token');
-        return Promise.reject('401 Unauthorized');
+        return Promise.reject(new Error('401 Unauthorized'));
     }
 
     return Promise.resolve();

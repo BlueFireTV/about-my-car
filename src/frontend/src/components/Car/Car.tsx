@@ -103,7 +103,7 @@ const CarDetail: React.FC = () => {
                                 <StickyNote className="icon" /> Notiz
                             </h3>
                             <textarea
-                                    value={car.note || ''}
+                                    value={car.note ?? ''}
                                     readOnly
                                     className="car-notes-textarea"
                                 />

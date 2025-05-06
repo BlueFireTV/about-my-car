@@ -17,14 +17,19 @@ const queryClient = new QueryClient({
   },
 });
 
-function ErrorFallback({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) {
+interface ErrorFallbackProps {
+  readonly error: Error
+  readonly resetErrorBoundary: () => void
+}
+
+function ErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   return (
     <div>
       <h2>Ups! Etwas ist schief gelaufen.</h2>
       <p>{error.message}</p>
       <button onClick={resetErrorBoundary}>Erneut versuchen</button>
     </div>
-  );
+  )
 }
 
 function App() {
