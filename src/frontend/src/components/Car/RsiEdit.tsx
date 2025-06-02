@@ -58,7 +58,6 @@ const RsiEdit: React.FC<RsiEditProps> = ({ setShowForm, user }) => {
     }
 
     setRegularServices((prev) => {
-      console.log("test", serviceValuesSelector);
 
       const updatedRegularServices = [...prev];
 
