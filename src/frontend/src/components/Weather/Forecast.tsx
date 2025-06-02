@@ -31,7 +31,6 @@ const ForecastComponent: React.FC = () => {
         </section>);
     }
 
-    console.log(forecast);
 
     const shouldIWash = (forecast:Forecast): boolean => {
         const days: { [key: string]: number } = {};
@@ -44,7 +43,6 @@ const ForecastComponent: React.FC = () => {
             days[date] += forecast.precipitation[i];
         }
 
-        console.log(days);
 
         const dates = Object.keys(days).sort((a, b) => a.localeCompare(b)).slice(0, 3);
         for (const date of dates) {
@@ -68,7 +66,6 @@ const ForecastComponent: React.FC = () => {
             }
         }
 
-        console.log(days);
 
         for (const day in days) {
             if (days[day] > 8) {
