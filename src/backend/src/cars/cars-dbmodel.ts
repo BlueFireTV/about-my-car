@@ -1,6 +1,5 @@
 import {query} from '../db';
 import { Car, RegularService } from '../types/car';
-import { User } from '../types/user';
 
 export async function getCarByUserId(UserId: number): Promise<Car> {
     const allCarsSql = `SELECT *  FROM public.cars WHERE User_id = $1`;
