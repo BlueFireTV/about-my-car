@@ -18,6 +18,14 @@ jobs:
           node-version: '22'
           registry-url: 'https://npm.pkg.github.com'
 
+      - name: Install FE dependencies
+        run: yarn install --frozen-lockfile
+        working-directory: ./src/frontend
+
+      - name: Run Jest coverage for FE
+        run: yarn test --coverage
+        working-directory: ./src/frontend
+
       - name: Install BE dependencies
         run: yarn install --frozen-lockfile
         working-directory: ./src/backend
@@ -25,6 +33,20 @@ jobs:
       - name: Run Jest coverage for BE
         run: yarn test --coverage
         working-directory: ./src/backend
+
+      - name: Merge coverage reports
+        run: |
+          mkdir -p coverage
+          cp ./src/frontend/coverage/lcov.info coverage/lcov-frontend.info
+          cp ./src/backend/coverage/lcov.info coverage/lcov-backend.info
+          npx lcov-result-merger 'coverage/lcov-*.info' 'coverage/lcov.info'
+        shell: bash
+
+      - name: Upload merged coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-coverage
+          path: coverage/lcov.info
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
