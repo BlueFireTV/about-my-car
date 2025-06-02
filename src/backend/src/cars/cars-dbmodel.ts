@@ -107,7 +107,7 @@ export async function setRegularServiceItemByCarId(carId: number, regularService
 }
 
 
-function formateDateUTCToLocal(date: Date): Date 
+export function formateDateUTCToLocal(date: Date): Date 
 {
     let newDate = new Date(date);
     newDate.setMinutes(newDate.getMinutes() - newDate.getTimezoneOffset());
