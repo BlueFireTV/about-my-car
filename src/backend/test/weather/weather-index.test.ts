@@ -1,8 +1,8 @@
-import * as carsIndex from "../../src/cars/cars-index";
+import * as weatherIndex from "../../src/weather/weather-index";
 
-describe("cars-index module", () => {
+describe("weather-index module", () => {
     it("should export a router instance", () => {
-        const router = carsIndex.default || carsIndex;
+        const router = weatherIndex.default || weatherIndex;
         // Check for typical express router properties
         expect(router).toBeDefined();
         expect(typeof router.use).toBe("function");
@@ -11,7 +11,7 @@ describe("cars-index module", () => {
     });
 
     it("should have at least one route registered", () => {
-        const router = carsIndex.default || carsIndex;
+        const router = weatherIndex.default || weatherIndex;
         // Express routers have a stack array with route layers
         const routeLayers = router.stack.filter(
             (layer: any) => layer.route && layer.route.path
