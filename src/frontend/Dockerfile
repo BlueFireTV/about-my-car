@@ -7,7 +7,7 @@ WORKDIR /app
 # Abhängigkeiten installieren
 COPY package.json .
 
-RUN npm install
+RUN npm install --ignore-scripts
 
 # Quellcode kopieren
 COPY . .

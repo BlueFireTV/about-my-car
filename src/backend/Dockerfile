@@ -7,7 +7,7 @@ WORKDIR /app
 # Abhängigkeiten installieren
 COPY package.json .
 
-RUN npm install
+RUN npm install --ignore-scripts
 
 # Quellcode kopieren
 COPY . .
@@ -27,7 +27,7 @@ COPY package.json .
 
 COPY --from=build-stage /app/dist ./dist
 
-RUN npm install --only=production
+RUN npm install --only=production --ignore-scripts
 
 EXPOSE 3133
 
