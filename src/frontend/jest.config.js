@@ -6,17 +6,14 @@ export default {
   testMatch: ['**/test/**/*.test.ts', '**/__tests__/**/*.test.ts'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
-  },
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.ts$': '$1', // allowImportingTsExtensions support
-  },
-  globals: {
-    'ts-jest': {
+    '^.+\\.tsx?$': ['ts-jest', {
       tsconfig: {
         esModuleInterop: true,
         allowImportingTsExtensions: true,
       },
-    },
+    }],
+  },
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.ts$': '$1', // allowImportingTsExtensions support
   },
 };

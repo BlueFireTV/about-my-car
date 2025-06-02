@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { getOne, create } from './users-dbmodel';
+import { getOne } from './users-dbmodel';
 import { User } from '../types/user';
 
 export async function loginUser(request: Request, response: Response) {
@@ -29,24 +29,6 @@ export async function loginUser(request: Request, response: Response) {
     }
   } catch (error) {
     console.error('Error during login:', error);
-    response.status(500).json({ status: 500, message: 'Internal server error' });
-  }
-}
-
-export async function registerUser(request: Request, response: Response) {
-  const user:User = request.body;
-  try {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(user.password, salt);
-    const createdUser = await create({ ...user, password: hashedPassword });
-    if (createdUser == null) {
-      response.status(400).json({ status: 400, message: 'Could not create user' });
-      return;
-    }
-    response.status(201).json(user);
-  }
-  catch (error) {
-    console.error('Error during registration:', error);
     response.status(500).json({ status: 500, message: 'Internal server error' });
   }
 }

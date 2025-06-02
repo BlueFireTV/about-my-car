@@ -1,4 +1,4 @@
-import { loginUser, registerUser } from "../../src/users/users-controller";
+import { loginUser } from "../../src/users/users-controller";
 import * as usersDbModel from "../../src/users/users-dbmodel";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -90,44 +90,6 @@ describe("users-controller", () => {
             expect(res.json).toHaveBeenCalledWith({ status: 500, message: "Internal server error" });
 
             process.env.JWT_SECRET = originalSecret;
-        });
-    });
-
-    describe("registerUser", () => {
-        it("should create user and return 201", async () => {
-            req.body = { username: "foo", password: "bar", surname: "Doe", name: "John", car: {} as any };
-            (bcrypt.genSalt as jest.Mock).mockResolvedValue("salt");
-            (bcrypt.hash as jest.Mock).mockResolvedValue("hashed");
-            (usersDbModel.create as jest.Mock).mockResolvedValue({ id: 1, username: "foo", password: "hashed", surname: "Doe", name: "John", car: {} as any });
-
-            await registerUser(req, res);
-
-            expect(res.status).toHaveBeenCalledWith(201);
-            expect(res.json).toHaveBeenCalledWith({ username: "foo", password: "bar", surname: "Doe", name: "John", car: {} as any });
-        });
-
-        it("should return 400 if user creation fails", async () => {
-            req.body = { username: "foo", password: "bar", surname: "Doe", name: "John", car: {} as any };
-            (bcrypt.genSalt as jest.Mock).mockResolvedValue("salt");
-            (bcrypt.hash as jest.Mock).mockResolvedValue("hashed");
-            (usersDbModel.create as jest.Mock).mockResolvedValue(null);
-
-            await registerUser(req, res);
-
-            expect(res.status).toHaveBeenCalledWith(400);
-            expect(res.json).toHaveBeenCalledWith({ status: 400, message: "Could not create user" });
-        });
-
-        it("should return 500 on error", async () => {
-            req.body = { username: "foo", password: "bar", surname: "Doe", name: "John", car: {} as any };
-            (bcrypt.genSalt as jest.Mock).mockResolvedValue("salt");
-            (bcrypt.hash as jest.Mock).mockResolvedValue("hashed");
-            (usersDbModel.create as jest.Mock).mockRejectedValue(new Error("fail"));
-
-            await registerUser(req, res);
-
-            expect(res.status).toHaveBeenCalledWith(500);
-            expect(res.json).toHaveBeenCalledWith({ status: 500, message: "Internal server error" });
         });
     });
 });
