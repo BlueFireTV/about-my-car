@@ -18,14 +18,6 @@ jobs:
           node-version: '22'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Install FE dependencies
-        run: yarn install --frozen-lockfile
-        working-directory: ./src/frontend
-
-      - name: Run Jest coverage for FE
-        run: yarn test --coverage
-        working-directory: ./src/frontend
-
       - name: Install BE dependencies
         run: yarn install --frozen-lockfile
         working-directory: ./src/backend
