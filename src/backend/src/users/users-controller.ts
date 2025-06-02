@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { getOne } from './users-dbmodel';
-import { User } from '../types/user';
 
 export async function loginUser(request: Request, response: Response) {
   const username = request.body.username;
