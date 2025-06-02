@@ -13,6 +13,16 @@ jest.mock('../../src/db', () => ({
 
 const mockedQuery = query as jest.MockedFunction<typeof query>;
 
+beforeAll(() => {
+  jest.spyOn(console, 'log').mockImplementation(() => {});
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterAll(() => {
+  (console.log as jest.Mock).mockRestore();
+  (console.error as jest.Mock).mockRestore();
+});
+
 describe('cars-dbmodel', () => {
   afterEach(() => {
     jest.clearAllMocks();

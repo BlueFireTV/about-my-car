@@ -14,10 +14,8 @@ module.exports = {
   //   '^@src/(.*)$': '<rootDir>/src/$1',
   // },
 
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json', // Pfad zu deiner tsconfig.json
-    },
+  transform: {
+    '^.+\\.tsx?$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.json' }],
   },
   // Damit .ts und .tsx als Testdateien erkannt werden:
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
