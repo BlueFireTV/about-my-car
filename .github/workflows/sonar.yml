@@ -19,7 +19,8 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install --frozen-lockfile
+
 
       - name: Jest coverage report for FE
         run: |
