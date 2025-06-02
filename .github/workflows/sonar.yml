@@ -18,18 +18,20 @@ jobs:
           node-version: '22'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Install dependencies
+      - name: Install FE dependencies
         run: yarn install --frozen-lockfile
-
-
-      - name: Jest coverage report for FE
-        run: |
-          yarn test --coverage
         working-directory: ./src/frontend
 
-      - name: Jest coverage report for BE
-        run: |
-          yarn test --coverage
+      - name: Run Jest coverage for FE
+        run: yarn test --coverage
+        working-directory: ./src/frontend
+
+      - name: Install BE dependencies
+        run: yarn install --frozen-lockfile
+        working-directory: ./src/backend
+
+      - name: Run Jest coverage for BE
+        run: yarn test --coverage
         working-directory: ./src/backend
 
       - name: SonarCloud Scan
