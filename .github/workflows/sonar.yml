@@ -23,12 +23,12 @@ jobs:
 
       - name: Jest coverage report for FE
         run: |
-          yarn jest --coverage
+          yarn test --coverage
         working-directory: ./src/frontend
 
       - name: Jest coverage report for BE
         run: |
-          yarn jest --coverage
+          yarn test --coverage
         working-directory: ./src/backend
 
       - name: SonarCloud Scan
