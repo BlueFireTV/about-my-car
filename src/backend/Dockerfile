@@ -19,7 +19,7 @@ RUN npm run build
 
 FROM node:22-alpine AS prod-stage
 
-# Non-root user erstellen
+# 
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 WORKDIR /app
@@ -29,10 +29,8 @@ COPY package.json .
 
 COPY --from=build-stage /app/dist ./dist
 
-RUN npm install --only=production --ignore-scripts
-
-# User wechseln
-RUN chown -R appuser:appgroup /app
+RUN npm install --only=production --ignore-scripts && \
+    chown -R appuser:appgroup /app
 
 USER appuser
 
