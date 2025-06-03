@@ -19,7 +19,9 @@ RUN npm run build
 
 FROM node:22-alpine AS prod-stage
 
-# Arbeitsverzeichnis im Container festlegen
+# Non-root user erstellen
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
 WORKDIR /app
 
 # Abhängigkeiten installieren [PROD]
@@ -28,6 +30,11 @@ COPY package.json .
 COPY --from=build-stage /app/dist ./dist
 
 RUN npm install --only=production --ignore-scripts
+
+# User wechseln
+RUN chown -R appuser:appgroup /app
+
+USER appuser
 
 EXPOSE 3133
 
