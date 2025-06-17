@@ -16,18 +16,18 @@ COPY . .
 RUN npm run build
 
 # Production stage
-
 FROM node:22-alpine AS prod-stage
 
 WORKDIR /app
 
-# Abhängigkeiten installieren [PROD]
 COPY package.json .
 
-COPY --from=build-stage /app/dist ./dist
+# Copy node_modules with native bcrypt build
+COPY --from=build-stage /app/node_modules ./node_modules
 
-RUN npm install --omit=dev --ignore-scripts 
+# Copy only the built app
+COPY --from=build-stage /app/dist ./dist
 
 EXPOSE 3133
 
-CMD [ "node", "dist/src/index.js"]
+CMD [ "node", "dist/src/index.js" ]
