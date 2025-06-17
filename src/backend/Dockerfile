@@ -26,7 +26,7 @@ COPY package.json .
 
 COPY --from=build-stage /app/dist ./dist
 
-RUN npm install --only=production --ignore-scripts 
+RUN npm install --omit=dev --ignore-scripts 
 
 EXPOSE 3133
 
