@@ -26,6 +26,8 @@ COPY package.json .
 
 COPY --from=build-stage /app/dist ./dist
 
+RUN npm install --only=production --ignore-scripts 
+
 EXPOSE 3133
 
 CMD [ "node", "dist/src/index.js"]
