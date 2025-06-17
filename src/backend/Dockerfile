@@ -13,7 +13,7 @@ RUN npm install --ignore-scripts
 COPY . .
 
 # Anwendung bauen
-RUN npm run build
+RUN npm run build --ignore-scripts
 
 # Production stage
 FROM node:22-alpine AS prod-stage
@@ -23,7 +23,7 @@ WORKDIR /app
 COPY package.json .
 
 # Installiere nur Produktionsabhängigkeiten + führe Rebuild aus
-RUN npm install --omit=dev && npm rebuild bcrypt
+RUN npm install --omit=dev --ignore-scripts && npm rebuild bcrypt
 
 COPY --from=build-stage /app/dist ./dist
 
