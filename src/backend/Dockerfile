@@ -22,10 +22,9 @@ WORKDIR /app
 
 COPY package.json .
 
-# Copy node_modules with native bcrypt build
-COPY --from=build-stage /app/node_modules ./node_modules
+# Installiere nur Produktionsabhängigkeiten + führe Rebuild aus
+RUN npm install --omit=dev && npm rebuild bcrypt
 
-# Copy only the built app
 COPY --from=build-stage /app/dist ./dist
 
 EXPOSE 3133
