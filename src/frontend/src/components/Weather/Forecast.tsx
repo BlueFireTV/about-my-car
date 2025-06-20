@@ -58,20 +58,20 @@ const ForecastComponent: React.FC = () => {
 
         for (let i = 0; i < forecast.time.length; i++) {
             const date = new Date(forecast.time[i]).toISOString().split("T")[0];
-            if (!days[date]) {
-            days[date] = forecast.temperature2m[i];
-            }
-            if (days[date] >  forecast.temperature2m[i]){
+            if (!(date in days)) {
                 days[date] = forecast.temperature2m[i];
+            } else {
+                days[date] = Math.min(days[date], forecast.temperature2m[i]);
             }
         }
 
-
-        for (const day in days) {
-            if (days[day] > 8) {
-            return false;
+        // Wenn an einem Tag die Temperatur unter 8 fällt, dann false
+        for (const minTemp of Object.values(days)) {
+            if (minTemp < 8) {
+                return false;
             }
         }
+
         return true;
     }
 
