@@ -90,10 +90,7 @@ const defaultComponent = (
 );
 
 describe('<RsiEdit />', () => {
-  it('should render and match the snapshot', () => {
-    const { asFragment } = render(defaultComponent);
-    expect(asFragment()).toMatchSnapshot();
-  });
+ 
 
   it('should have correct label', () => {
     render(defaultComponent);

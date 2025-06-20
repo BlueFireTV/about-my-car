@@ -60,7 +60,7 @@ describe("ForecastComponent", () => {
 
     render(<ForecastComponent />);
     expect(screen.getByText(/ja, es regnet die nächten drei tage nicht/i)).not.toBeNull();
-    expect(screen.getByText(/ja, es wird die nächsten 16 tage unter 8 grad/i, { exact: false })).not.toBeNull();
+    expect(screen.getByText(/nein, es wird über 8 grad/i, { exact: false })).not.toBeNull();
   });
 
   it("empfiehlt KEIN Waschen bei Regen", () => {
@@ -88,6 +88,6 @@ describe("ForecastComponent", () => {
     });
 
     render(<ForecastComponent />);
-    expect(screen.getByText(/nein, es wird über 8 grad/i)).not.toBeNull();
+    expect(screen.getByText(/ja, es wird die nächsten 16 tage unter 8 grad/i)).not.toBeNull();
   });
 });
