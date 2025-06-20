@@ -15,6 +15,7 @@ dist-ssr
 
 # Editor directories and files
 .DS_Store
+db_data/
 coverage/
 .vscode/*
 !.vscode/extensions.json
