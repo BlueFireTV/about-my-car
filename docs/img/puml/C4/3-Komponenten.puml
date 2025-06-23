@@ -1,0 +1,19 @@
+@startuml hauptcomponenten
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+System_Ext(api, "REST-API", "Backend-Service zur Datenverarbeitung")
+
+Container_Boundary(frontend, "About My Car (Frontend)") {
+  Component(homepage, "Homepage", "React Component", "Startseite mit Navigation und Wetter")
+  Component(vehicleView, "Fahrzeug-Datenanzeige", "React Component", "Zeigt Fahrzeugdaten")
+  Component(serviceForm, "Service-Formular", "React Component", "Eingabe von Servicedaten")
+}
+
+Rel(serviceForm, vehicleView, "Aktualisiert Anzeige")
+Rel(homepage, vehicleView, "Verlinkung zur Ansicht")
+Rel(vehicleView, api, "Lädt Fahrzeugdaten")
+Rel(serviceForm, api, "Sendet neue Service-Einträge")
+
+@enduml

@@ -1,0 +1,17 @@
+@startuml kontext
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(gast, "Gastbenutzer", "Kann öffentliche Informationen einsehen")
+Person(eingeloggt, "Eingeloggter Benutzer", "Kann persönliche Fahrzeugdaten verwalten")
+
+System(aboutMyCar, "About My Car", "Webanwendung zur Fahrzeugdatenverwaltung")
+
+System_Ext(weatherApi, "Wetter-API (open-meteo)", "Liefert Wetterdaten")
+
+Rel(gast, aboutMyCar, "Verwendet (öffentlich)")
+Rel(eingeloggt, aboutMyCar, "Verwendet (mit Login)")
+Rel(aboutMyCar, weatherApi, "Fragt Wetterdaten ab")
+
+@enduml

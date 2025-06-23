@@ -1,0 +1,25 @@
+@startuml verteilung
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(gast, "Gastbenutzer", "Kann öffentliche Informationen einsehen")
+Person(eingeloggt, "Eingeloggter Benutzer", "Kann persönliche Fahrzeugdaten verwalten")
+
+System_Boundary(c1, "Docker-Compose") {
+  Container(nginx, "nginx (Container)", "Reverse Proxy", "Empfängt HTTP-Requests vom Frontend")
+  Container(frontend, "Frontend (React)", "React + TypeScript", "Statische Webanwendung")
+  Rel(nginx, frontend, "Liefert statische Inhalte")
+  Container(backend, "Backend (Node.js)", "Node.js + Express", "Bietet REST-API an")
+  ContainerDb(db, "Datenbank (PostgreSQL)", "PostgreSQL", "Speichert Fahrzeug- und Servicedaten")
+}
+
+System_Ext(weather, "Wetter-API (open-meteo)", "Externe Wetterdatenquelle")
+
+Rel(gast, nginx, "HTTP Request (Frontend)")
+Rel(eingeloggt, nginx, "HTTP Request (Frontend/API)")
+Rel(nginx, backend, "API Request")
+Rel(backend, db, "SQL Query")
+Rel(backend, weather, "HTTP Request", "Wetterdaten holen")
+
+@enduml
